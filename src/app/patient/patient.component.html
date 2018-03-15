@@ -1,3 +1,45 @@
-<p>
-  patient works!
-</p>
+<div *ngFor="let patient of patients">
+  <!-- {{ patient['patient_id'] }} -->
+</div>
+
+<nav id='patient_overview'>
+  <ng-container class="patient-select">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Patient ID" aria-label="Patient ID" [formControl]="patientCtrl" [matAutocomplete]="patient_id">
+    </mat-form-field>
+
+    <mat-autocomplete #patient_id="matAutocomplete">
+      <!-- <mat-option *ngFor="let patient of patients" [value]="patient.patient_id" (onSelectionChange)="changeID($event, patient)"> -->
+      <mat-option *ngFor="let patient of patients" [value]="patient.patient_id" (onSelectionChange)="this.currentPatient = patient">
+        {{ patient['patient_id'] }}
+      </mat-option>
+    </mat-autocomplete>
+  </ng-container>
+
+  <ng-container id='patient_attributes' *ngIf='currentPatient'>
+    <li id='sex' [class]="currentPatient.sex">
+      {{ currentPatient.sex }}
+    </li>
+
+    <li id='age'>
+      {{ currentPatient.age }}
+    </li>
+
+    <li id='virus' [class]="currentPatient.cohort">
+      {{ currentPatient.cohort }}
+    </li>
+
+    <li id='status' [class]="currentPatient.cohort_exposure">
+      {{ currentPatient.cohort_exposure }}
+    </li>
+
+    <ng-container id='timepoints'>
+    <li  class="timepoint" *ngFor="let timept of currentPatient.timepoints">
+      {{ timept }}
+    </li>
+    </ng-container>
+
+  </ng-container>
+
+
+</nav>

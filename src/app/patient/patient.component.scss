@@ -1,0 +1,42 @@
+$timept-width: 30px;
+
+.female {
+  color: pink;
+}
+
+.male {
+  color: blue;
+}
+
+nav li {
+    display: inline;
+}
+
+#sex, #age, #virus, #status, #timepoints {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.timepoint {
+  display: block;
+  height: $timept-width;
+  width: $timept-width;
+  line-height: $timept-width;
+
+  margin-right: 5px;
+
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+
+  background-color: aliceblue;
+  // color: white;
+  text-align: center;
+}
+
+.timepoint::before {
+  content: "T";
+}
+
+#age::after {
+  content: "y old";
+}
