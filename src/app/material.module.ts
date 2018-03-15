@@ -4,14 +4,14 @@ import { CommonModule } from '@angular/common';
 
 import {
   MatAutocompleteModule, MatFormFieldModule, MatInputModule,
-  MatChipsModule
+  MatChipsModule, MatTabsModule
 } from '@angular/material';
 
 @NgModule({
   imports: [MatAutocompleteModule, MatFormFieldModule, MatInputModule,
-    MatChipsModule
+    MatChipsModule, MatTabsModule
   ],
   exports: [MatAutocompleteModule, MatFormFieldModule, MatInputModule,
-    MatChipsModule],
+    MatChipsModule, MatTabsModule],
 })
 export class MaterialModule { }

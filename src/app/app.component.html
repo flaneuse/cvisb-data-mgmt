@@ -2,12 +2,20 @@
 Center for Viral Systems Biology Data Management System
 </h1>
 
-<nav>
-  <a routerLink='/patient' routerLinkActive="active">patient-file browser</a>
+<nav mat-tab-nav-bar>
+  <a mat-tab-link routerLink='patient' routerLinkActive="active" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+  patient-file browser
+</a>
 
-  <a routerLink='sample-naming'>sample file naming standards</a>
-  <a routerLink='patients'>patient-experiment dashboard</a>
+  <a mat-tab-link routerLink='sample-naming' routerLinkActive="active" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+    sample file naming standards
+  </a>
+
+  <a mat-tab-link routerLink='patients' routerLinkActive="active" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+    patient-experiment dashboard
+  </a>
 </nav>
+
 
 
 <router-outlet></router-outlet>
