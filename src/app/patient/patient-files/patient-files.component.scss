@@ -1,0 +1,22 @@
+// colors
+$default-color: #212529;
+$complete-color: #70b78b;
+
+
+.mat-row {
+  border-bottom: none;
+}
+
+.file-path {
+  color: lighten($default-color, 30%);
+  font-size: 0.75em;
+}
+
+
+mat-icon {
+  color: lighten($default-color, 50%);
+}
+
+.complete {
+  color: $complete-color;
+}

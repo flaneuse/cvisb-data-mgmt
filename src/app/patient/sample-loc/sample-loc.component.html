@@ -1,0 +1,73 @@
+<h2>Samples</h2>
+
+<mat-table #samples matSort [dataSource]="dataSource">
+  <!-- ID Column -->
+  <ng-container matColumnDef="sample_id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>sample ID</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{current_patient['patient_id']}}_{{element.sample_id}}_T{{current_patient['timepoints'][0]}} </mat-cell>
+  </ng-container>
+
+  <!-- Timepoint Column -->
+  <ng-container matColumnDef="timepoint">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>timepoint</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <mat-chip class="timepoint">
+        {{current_patient['timepoints'][0]}}
+      </mat-chip>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Sample Description Column -->
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>description</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.sample_descrip}} </mat-cell>
+  </ng-container>
+
+  <!-- Date Column -->
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>date created</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <mat-form-field class="example-full-width">
+        <input matInput type='date'>
+      </mat-form-field>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Storage Location Column -->
+  <!-- TODO: fix locations to save -->
+  <!-- BUG: need to assign unique vars to each location -->
+  <!-- TODO: read from file -->
+  <ng-container matColumnDef="location">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>storage location</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <ng-container class="storage-select">
+        <mat-form-field>
+          <mat-select [(ngModel)]="storageLoc" name="location">
+            <mat-option *ngFor="let location of storage_locs" [value]="location.loc_id">
+              {{ location['institution'] }}: {{ location['location'] }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </ng-container>
+
+    </mat-cell>
+  </ng-container>
+
+  <!-- Invalid Column -->
+  <ng-container matColumnDef="invalid">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>invalid sample</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <mat-checkbox [(ngModel)]="checked" aria-label="sample invalid"></mat-checkbox>
+      <!-- TODO: if checked, leave comment -->
+      <mat-form-field class="example-full-width">
+        <textarea matInput matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" placeholder="Reason sample is invalid"></textarea>
+      </mat-form-field>
+    </mat-cell>
+  </ng-container>
+
+  <!-- GENERATE TABLE -->
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>

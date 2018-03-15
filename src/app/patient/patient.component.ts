@@ -18,13 +18,16 @@ export class PatientComponent implements OnInit {
   ngOnInit() {
     this.patients = createFakePatients();
     console.log(this.patients)
+
+// BUG: for testing purposes; be sure to remove.
+    this.currentPatient = this.patients[0]
   }
 
 
   ngOnChanges() {
   }
 
-
+// TODO: REMOVE / fix weirdness on changing ID
   changeID(event, new_patient){
     console.log("CHANGED!")
     console.log(new_patient)

@@ -1,0 +1,80 @@
+<h2>Patient Data Files</h2>
+
+<!-- <div *ngFor="let timept of current_patient['timepoints']">
+  <h2>
+    {{timept}}
+  </h2>
+
+</div> -->
+
+<mat-table #files [dataSource]="dataSource" matSort>
+  <!-- File Name Column -->
+  <ng-container matColumnDef="file">
+    <!-- TODO: loop -->
+    <!-- TODO: hyperlink -->
+    <!-- TODO: file path -->
+    <mat-header-cell *matHeaderCellDef mat-sort-header>file</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <div class="file-name">
+        {{current_patient['patient_id']}}_T{{current_patient['timepoints'][0]}}_{{element.expt_id}}{{element.file_types[0]}}
+      </div>
+      <div class="file-path">
+        {{element.dropbox}}{{current_patient['patient_id']}}_T{{current_patient['timepoints'][0]}}_{{element.expt_id}}{{element.file_types[0]}}
+      </div>
+
+    </mat-cell>
+  </ng-container>
+
+  <!-- Timepoint Column -->
+  <ng-container matColumnDef="timepoint">
+<ng-container *ngFor="let timept of current_patient['timepoints']">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>timepoint</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{timept}}
+    </mat-cell>
+    </ng-container>
+  </ng-container>
+
+
+  <!-- Timepoint Column -->
+  <!-- <ng-container matColumnDef="timepoint">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>timepoint</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <mat-chip class="timepoint">
+        {{current_patient['timepoints'][0]}}
+      </mat-chip>
+    </mat-cell>
+  </ng-container> -->
+
+
+  <!-- File Status Column -->
+  <ng-container matColumnDef="status">
+    <!-- TODO: link to file -->
+    <!-- TODO: CSS style -->
+    <mat-header-cell *matHeaderCellDef mat-sort-header>status</mat-header-cell>
+    <mat-cell *matCellDef="let element" class='complete'> complete </mat-cell>
+  </ng-container>
+
+  <!-- File Upload Date Column -->
+  <ng-container matColumnDef="date">
+    <!-- TODO: link to file -->
+    <!-- TODO: format date -->
+    <mat-header-cell *matHeaderCellDef mat-sort-header>date uploaded</mat-header-cell>
+    <mat-cell *matCellDef="let element">2018-02-02 </mat-cell>
+  </ng-container>
+
+  <!-- Upload New Data Column -->
+  <ng-container matColumnDef="upload">
+    <!-- TODO: link to file -->
+    <!-- TODO: CSS style -->
+    <mat-header-cell *matHeaderCellDef mat-sort-header>upload new file</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <mat-icon>backup</mat-icon>
+</mat-cell>
+  </ng-container>
+
+  <!-- GENERATE TABLE -->
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>
