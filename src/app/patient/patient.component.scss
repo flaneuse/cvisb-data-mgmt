@@ -1,35 +1,108 @@
-$timept-width: 30px;
+// // Width of
+// $timept-width: 35px;
+// colors
+$default-color: #212529;
+$lassa-color: #0c5934;
+$lassa-500: #41875E;
+$lassa-300: #70b78b;
+$lassa-100: #a1eabb;
+$ebola-color: #c2185b;
+$ebola-500: #E91E63;
+$ebola-300: #F06292;
+$ebola-100: #F8BBD0;
+$male-color: #f57f17;
+$female-color: #7e57c2;
+// Flip nav bar to horizontal, pad edges
+nav li {
+  display: inline;
+}
 
+.age,
+.sex,
+.status,
+.timepoints,
+.virus {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+// Sex
 .female {
-  color: pink;
+  color: $female-color;
+  // border: $female-color solid 1px;
+  // padding: 5px;
+  // border-radius: 20px;
 }
 
 .male {
-  color: blue;
+  color: $male-color;
+  // border: $male-color solid 1px;
+  // padding: 5px;
+}
+// Virus type
+.virus {
+  padding: 5px;
+  margin-right: 0;
+  border-radius: 5px 0 0 5px;
 }
 
-nav li {
-    display: inline;
+.Lassa {
+  background-color: $lassa-color;
+  border: $lassa-color 1px solid;
+  color: white;
 }
 
-#sex, #age, #virus, #status, #timepoints {
-  padding-left: 10px;
-  padding-right: 10px;
+.Ebola {
+  background-color: $ebola-color;
+  border: $ebola-color 1px solid;
+  color: white;
+}
+// Patient status: living or dead
+.status {
+  padding: 5px;
+  margin-left: 0;
+  border-radius: 0 5px 5px 0;
+  // border-left: whitesmoke solid 3px;
+}
+
+.died.Lassa {
+  background-color: $lassa-100;
+  color: $default-color;
+}
+
+.survived.Lassa {
+  background-color: $lassa-300;
+  color: $default-color;
+}
+
+.exposed.Lassa {
+  background-color: $lassa-500;
+}
+
+.died.Ebola {
+  background-color: $ebola-100;
+  color: $default-color;
+}
+
+.survived.Ebola {
+  background-color: $ebola-300;
+  color: $default-color;
+}
+
+.exposed.Ebola {
+  background-color: $ebola-500;
+}
+
+.community {
+  background-color: white;
+  color: $default-color;
+}
+// Timepoint buttons
+.timepoints {
+  display: inline-block;
 }
 
 .timepoint {
-  display: block;
-  height: $timept-width;
-  width: $timept-width;
-  line-height: $timept-width;
-
-  margin-right: 5px;
-
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-
-  background-color: aliceblue;
-  // color: white;
+  background-color: #ccc;
   text-align: center;
 }
 
@@ -37,6 +110,6 @@ nav li {
   content: "T";
 }
 
-#age::after {
+.age::after {
   content: "y old";
 }

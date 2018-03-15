@@ -17,27 +17,30 @@
   </ng-container>
 
   <ng-container id='patient_attributes' *ngIf='currentPatient'>
-    <li id='sex' [class]="currentPatient.sex">
+    <li [ngClass]="['sex', currentPatient.sex]">
       {{ currentPatient.sex }}
     </li>
 
-    <li id='age'>
+    <li class='age'>
       {{ currentPatient.age }}
     </li>
 
-    <li id='virus' [class]="currentPatient.cohort">
+    <li [ngClass]="['virus', currentPatient.cohort]">
       {{ currentPatient.cohort }}
     </li>
 
-    <li id='status' [class]="currentPatient.cohort_exposure">
+    <li [ngClass]="['status', currentPatient.cohort_exposure, currentPatient.cohort]">
       {{ currentPatient.cohort_exposure }}
     </li>
 
-    <ng-container id='timepoints'>
-    <li  class="timepoint" *ngFor="let timept of currentPatient.timepoints">
+    <mat-chip-list class='timepoints'>
+    <mat-chip  class="timepoint" *ngFor="let timept of currentPatient.timepoints">
       {{ timept }}
-    </li>
-    </ng-container>
+    </mat-chip>
+    <!-- <li  class="timepoint" *ngFor="let timept of currentPatient.timepoints">
+      {{ timept }}
+    </li> -->
+  </mat-chip-list>
 
   </ng-container>
 
