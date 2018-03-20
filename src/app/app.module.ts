@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './/app-routing.module';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 // Custom components
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import { ExptParamsComponent } from './naming-conventions/expt-params/expt-param
 import { PatientHeaderComponent } from './patient-header/patient-header.component';
 import { PatientTrackerComponent } from './patient-tracker/patient-tracker.component';
 import { PatientStoplightComponent } from './patient-tracker/patient-stoplight/patient-stoplight.component';
+import { CopyFilenameComponent } from './naming-conventions/copy-filename/copy-filename.component';
+import { SampleDetailsComponent } from './naming-conventions/sample-details/sample-details.component';
 
 
 @NgModule({
@@ -32,7 +35,9 @@ import { PatientStoplightComponent } from './patient-tracker/patient-stoplight/p
     ExptParamsComponent,
     PatientHeaderComponent,
     PatientTrackerComponent,
-    PatientStoplightComponent
+    PatientStoplightComponent,
+    CopyFilenameComponent,
+    SampleDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,8 @@ import { PatientStoplightComponent } from './patient-tracker/patient-stoplight/p
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
