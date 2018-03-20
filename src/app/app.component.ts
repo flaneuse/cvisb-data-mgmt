@@ -8,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'CViSB broswer';
+  navLinks = [{'path': 'patient', 'label': 'patient-file browser'},
+{'path': 'sample-naming', 'label': 'sample file naming standards'},
+{'path': 'patient-tracker', 'label': 'patient tracker'}]
 }

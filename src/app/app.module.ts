@@ -14,6 +14,11 @@ import { PatientComponent } from './patient/patient.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SampleLocComponent } from './patient/sample-loc/sample-loc.component';
 import { PatientFilesComponent } from './patient/patient-files/patient-files.component';
+import { NamingConventionsComponent } from './naming-conventions/naming-conventions.component';
+import { ExptParamsComponent } from './naming-conventions/expt-params/expt-params.component';
+import { PatientHeaderComponent } from './patient-header/patient-header.component';
+import { PatientTrackerComponent } from './patient-tracker/patient-tracker.component';
+import { PatientStoplightComponent } from './patient-tracker/patient-stoplight/patient-stoplight.component';
 
 
 @NgModule({
@@ -22,7 +27,12 @@ import { PatientFilesComponent } from './patient/patient-files/patient-files.com
     PageNotFoundComponent,
     PatientComponent,
     SampleLocComponent,
-    PatientFilesComponent
+    PatientFilesComponent,
+    NamingConventionsComponent,
+    ExptParamsComponent,
+    PatientHeaderComponent,
+    PatientTrackerComponent,
+    PatientStoplightComponent
   ],
   imports: [
     BrowserModule,
