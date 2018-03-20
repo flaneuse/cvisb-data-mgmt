@@ -1,48 +1,4 @@
-<!-- PATIENT OVERVIEW NAVBAR -->
-<nav id='patient_overview'>
-  <!-- Select Patient ID -->
-  <ng-container class="patient-select">
-    <mat-form-field>
-      <input type="text" matInput placeholder="Patient ID" aria-label="Patient ID" [formControl]="patientCtrl" [matAutocomplete]="patient_id">
-    </mat-form-field>
-
-    <mat-autocomplete #patient_id="matAutocomplete">
-      <!-- <mat-option *ngFor="let patient of patients" [value]="patient.patient_id" (onSelectionChange)="changeID($event, patient)"> -->
-      <mat-option *ngFor="let patient of patients" [value]="patient.patient_id" (onSelectionChange)="this.currentPatient = patient">
-        {{ patient['patient_id'] }}
-      </mat-option>
-    </mat-autocomplete>
-  </ng-container>
-
-  <!-- List key metadata for patient -->
-  <ng-container id='patient_attributes' *ngIf='currentPatient'>
-    <li [ngClass]="['sex', currentPatient.sex]">
-      {{ currentPatient.sex }}
-    </li>
-
-    <li class='age'>
-      {{ currentPatient.age }}
-    </li>
-
-    <li [ngClass]="['virus', currentPatient.cohort]">
-      {{ currentPatient.cohort }}
-    </li>
-
-    <li [ngClass]="['status', currentPatient.cohort_exposure, currentPatient.cohort]">
-      {{ currentPatient.cohort_exposure }}
-    </li>
-
-    <mat-chip-list class='timepoints'>
-      <mat-chip class="timepoint" *ngFor="let timept of currentPatient.timepoints">
-        {{ timept }}
-      </mat-chip>
-    </mat-chip-list>
-
-  </ng-container>
-
-
-</nav>
-<!-- end of patient overview -->
+<app-patient-header></app-patient-header>
 
 <!-- PATIENT DATA -->
 <ng-container id='patient_data' *ngIf='currentPatient'>
