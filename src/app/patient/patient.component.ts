@@ -9,8 +9,7 @@ import { FormControl } from "@angular/forms";
 })
 export class PatientComponent implements OnInit {
 
-  private patients: Array<any> = [];
-  patientCtrl: FormControl;
+  // private patients: Array<any> = [];
   currentPatient: Object;
 
   constructor() {}
@@ -18,6 +17,9 @@ export class PatientComponent implements OnInit {
   ngOnInit() {
   }
 
+  onPatientEmit(current_patient) {
+    this.currentPatient = current_patient;
+  }
 
   ngOnChanges() {
   }

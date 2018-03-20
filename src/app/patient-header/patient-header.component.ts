@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
 
 import { FormControl } from "@angular/forms";
 import { Observable } from 'rxjs/Observable';
@@ -29,18 +29,15 @@ export class User {
   providers: [GetPatientRosterService]
 })
 export class PatientHeaderComponent implements OnInit {
+  @Output() patientEmitter = new EventEmitter<Patient>();
 
   private patients: Array<Patient> = [];
-  private patientIDs: Array<string> = [];
-  patientCtrl: FormControl = new FormControl();
+  // private patientIDs: Array<string> = [];
   currentPatient: Object;
 
+  patientCtrl: FormControl = new FormControl();
   options: any;
-
-
   filteredOptions: Observable<Patient[]>;
-
-
 
   constructor(private roster: GetPatientRosterService) {
   }
@@ -58,8 +55,6 @@ export class PatientHeaderComponent implements OnInit {
       map(value => typeof value === 'string' ? value : value.patient_id),
       map(patient_id => patient_id ? this.filter(patient_id) : this.options.slice())
       );
-
-        console.log(this.patientCtrl.valueChanges)
   }
 
 
@@ -81,13 +76,16 @@ export class PatientHeaderComponent implements OnInit {
     return user ? user.patient_id : undefined;
   }
 
-  changeID(event, new_patient){
+  changeID(event, new_patient) {
     console.log("CHANGED!")
-    if(event.isUserInput) {
-      // see https://github.com/angular/material2/issues/4094
-    console.log(new_patient.patient_id)
-    this.currentPatient = new_patient;
+    if (event.isUserInput) {
+      // Fix for double-sending events if click/keypress; see https://github.com/angular/material2/issues/4094
+      console.log(new_patient.patient_id)
+      // Update current patient
+      this.currentPatient = new_patient;
+      this.patientEmitter.emit(new_patient);
+    }
   }
-  }
+
 
 }

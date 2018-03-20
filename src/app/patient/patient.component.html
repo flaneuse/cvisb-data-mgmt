@@ -1,4 +1,4 @@
-<app-patient-header></app-patient-header>
+<app-patient-header (patientEmitter)="onPatientEmit($event)"></app-patient-header>
 
 <!-- PATIENT DATA -->
 <ng-container id='patient_data' *ngIf='currentPatient'>
