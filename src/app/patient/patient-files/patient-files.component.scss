@@ -1,22 +1,15 @@
-// colors
-$default-color: #212529;
-$complete-color: #70b78b;
-
+@import '~_custom_colors.scss';
 
 .mat-row {
   border-bottom: none;
 }
 
 .file-path {
-  color: lighten($default-color, 30%);
+  color: $grey-400;
   font-size: 0.75em;
 }
 
 
 mat-icon {
-  color: lighten($default-color, 50%);
-}
-
-.complete {
-  color: $complete-color;
+  color: $grey-300;
 }

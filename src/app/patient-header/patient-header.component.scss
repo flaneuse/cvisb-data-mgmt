@@ -1,17 +1,9 @@
-// // Width of
-// $timept-width: 35px;
-// colors
-$default-color: #212529;
-$lassa-color: #0c5934;
-$lassa-500: #41875E;
-$lassa-300: #70b78b;
-$lassa-100: #a1eabb;
-$ebola-color: #c2185b;
-$ebola-500: #E91E63;
-$ebola-300: #F06292;
-$ebola-100: #F8BBD0;
-$male-color: #f57f17;
-$female-color: #7e57c2;
+@import '~_custom_colors.scss';
+
+/deep/ .mat-tab-label-active{
+  background-color: $tab-color;
+}
+
 // Flip nav bar to horizontal, pad edges
 nav li {
   display: inline;
@@ -38,6 +30,7 @@ nav li {
   // border: $male-color solid 1px;
   // padding: 5px;
 }
+
 // Virus type
 .virus {
   padding: 5px;
@@ -56,6 +49,7 @@ nav li {
   border: $ebola-color 1px solid;
   color: white;
 }
+
 // Patient status: living or dead
 .status {
   padding: 5px;
@@ -65,37 +59,38 @@ nav li {
 }
 
 .died.Lassa {
-  background-color: $lassa-100;
+  background-color: $lassa-lt;
   color: $default-color;
 }
 
 .survived.Lassa {
-  background-color: $lassa-300;
+  background-color: $lassa-md;
   color: $default-color;
 }
 
 .exposed.Lassa {
-  background-color: $lassa-500;
+  background-color: $lassa-dk;
 }
 
 .died.Ebola {
-  background-color: $ebola-100;
+  background-color: $ebola-lt;
   color: $default-color;
 }
 
 .survived.Ebola {
-  background-color: $ebola-300;
+  background-color: $ebola-md;
   color: $default-color;
 }
 
 .exposed.Ebola {
-  background-color: $ebola-500;
+  background-color: $ebola-dk;
 }
 
 .community {
   background-color: white;
   color: $default-color;
 }
+
 // Timepoint buttons
 .timepoints {
   display: inline-block;
