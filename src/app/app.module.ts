@@ -22,6 +22,8 @@ import { PatientTrackerComponent } from './patient-tracker/patient-tracker.compo
 import { PatientStoplightComponent } from './patient-tracker/patient-stoplight/patient-stoplight.component';
 import { CopyFilenameComponent } from './naming-conventions/copy-filename/copy-filename.component';
 import { SampleDetailsComponent } from './naming-conventions/sample-details/sample-details.component';
+import { PatientSummaryComponent } from './patient-tracker/patient-summary/patient-summary.component';
+import { StatusKeyComponent } from './patient-tracker/status-key/status-key.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { SampleDetailsComponent } from './naming-conventions/sample-details/samp
     PatientTrackerComponent,
     PatientStoplightComponent,
     CopyFilenameComponent,
-    SampleDetailsComponent
+    SampleDetailsComponent,
+    PatientSummaryComponent,
+    StatusKeyComponent
   ],
   imports: [
     BrowserModule,

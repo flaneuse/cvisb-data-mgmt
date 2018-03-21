@@ -1,0 +1,6 @@
+<ul *ngFor="let code of codes" class='statuses'>
+  <li>
+    <span [ngClass]="['status', 's'.concat(code.code)]">{{code.code}}</span>
+    <span class='status-descrip'>{{code.status}}</span>
+  </li>
+</ul>

@@ -1,0 +1,48 @@
+<!-- STOP LIGHT TABLE -->
+<mat-table #files [dataSource]="dataSource" matSort>
+
+
+  <!-- Patient ID -->
+  <ng-container matColumnDef="patient_id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>patient_id</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.patient_id}} </mat-cell>
+  </ng-container>
+
+  <!-- Timepoint Column -->
+  <ng-container matColumnDef="timepoint">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>timepoint</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <mat-chip-list>
+        <mat-chip class="timepoint">
+          {{element.timepoints}}
+        </mat-chip>
+      </mat-chip-list>
+    </mat-cell>
+
+  </ng-container>
+
+  <!-- File Statuses Column -->
+  <span *ngFor="let expt of expts; let i=index">
+  <ng-container matColumnDef="{{ expt }}">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ expt }} </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span [ngClass]="['status', 's'.concat(element[expt])]">{{element[expt]}}</span>
+  </mat-cell>
+  </ng-container>
+  </span>
+
+  <!-- Total completed column -->
+  <ng-container matColumnDef="total_complete">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>experiments completed</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.completed }}</mat-cell>
+  </ng-container>
+
+  <!-- GENERATE TABLE -->
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>
+
+<!-- PAGINATION -->
+<mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+</mat-paginator>

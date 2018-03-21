@@ -1,0 +1,63 @@
+// colors
+$default-color: #212529;
+
+$abandoned-color: #fff;
+
+$nosample-color: #d3d9de;
+$notstarted-color: #CFBF98; //#ded4bb;
+$started-color: #F1E462;
+$raw-color: #C8E76E;
+$complete-color: #70b78b;
+
+// sizes
+$dot-size: 15px;
+
+.status {
+  height: $dot-size;
+  width: $dot-size;
+  border: $default-color solid 1px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: auto;
+  font-size: 0;
+}
+
+.s0 {
+  background-color: $abandoned-color;
+}
+
+.s1 {
+  background-color: $nosample-color;
+}
+
+.s2 {
+  background-color: $notstarted-color;
+}
+
+
+.s3 {
+  background-color: $started-color;
+}
+
+.s4 {
+  background-color: $raw-color;
+}
+
+.s5 {
+  background-color: $complete-color;
+}
+
+// Fix the list positions
+.statuses li {
+  display: inline;
+}
+
+.statuses {
+  list-style-type: none;
+    display: inline;
+}
+
+.status-descrip {
+  vertical-align: bottom;
+  padding-left: 5px;
+}

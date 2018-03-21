@@ -1,0 +1,16 @@
+<div fxLayout="row" fxLayoutAlign="space-evenly none" class="summary-text">
+  <div class="todo">
+    <span class="summary-num">{{ num_total - num_complete }}</span> <span class="summary-label"> to do</span>
+  </div>
+
+  <div class="annotation">
+    number of completely analzyed samples
+  </div>
+
+  <div class="complete">
+    <span class="summary-label">done </span> <span class="summary-num">{{ num_complete }}</span>
+  </div>
+</div>
+
+<div #chart class="bargraph">
+</div>

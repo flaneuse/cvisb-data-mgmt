@@ -1,0 +1,32 @@
+<h2>Patient summary</h2>
+
+<!-- FILTERING OPTIONS -->
+<!-- <mat-form-field>
+  <mat-select placeholder="Lab" multiple [(value)]="sel_lab">
+    <mat-option *ngFor="let lab of labs" [value]="lab">{{ lab }}</mat-option>
+  </mat-select>
+</mat-form-field> -->
+
+<div fxLayout="row" fxLayoutAlign="space-between">
+  <section class="checkbox-horiz-grp" id="lab-selector">
+  <mat-checkbox *ngFor="let lab of labs; let i = index" class="checkbox-horiz"
+      (change)="filterLabs($event, lab)" [value]="lab">{{lab}}</mat-checkbox>
+  </section>
+
+  <app-status-key></app-status-key>
+
+</div>
+
+<!-- <li *ngFor="let obj of labs">
+   <a href="#" class="small" data-value="option1" tabIndex="-1">
+<input type="checkbox"
+    (change)="expression && expression[obj.name]=$event.target.checked ? true : undefined"
+    [ngModel]="expression && expression[obj.name]">
+   </a>
+</li> -->
+
+<!-- SUMMARY BAR GRAPH -->
+<app-patient-summary [num_total] = "25" [num_complete] = "3"></app-patient-summary>
+
+<!-- STOPLIGHT DOT PLOT TABLE -->
+<app-patient-stoplight></app-patient-stoplight>

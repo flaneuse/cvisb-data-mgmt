@@ -1,0 +1,59 @@
+// colors
+$default-color: #212529;
+
+$abandoned-color: #fff;
+$nosample-color: #d3d9de;
+$notstarted-color: #CFBF98;
+$started-color: #F1E462;
+$raw-color: #C8E76E;
+$complete-color: #70b78b;
+
+// summary text
+.summary-text {
+  color: $nosample-color;
+  height: 100%;
+  align-items: baseline !important;
+}
+
+.annotation {
+  font-size: 1.5em;
+}
+
+.summary-num {
+  font-size: 2em;
+  font-weight: 400;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.complete, .todo {
+  font-size: 1.75em;
+}
+
+.complete {
+  color: $complete-color;
+}
+
+.todo {
+  color: lighten($default-color, 50%);
+}
+
+
+
+// Bar graph tracker
+.bargraph {
+  width: 100%;
+  height: 45px;
+}
+
+.target-rect {
+  fill: $nosample-color;
+  stroke: $default-color;
+  stroke-size: 1px;
+}
+
+.complete-rect {
+  fill: $complete-color;
+  stroke: $default-color;
+  stroke-size: 1px;
+}
