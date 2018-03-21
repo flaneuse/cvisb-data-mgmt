@@ -6,7 +6,7 @@ import * as d3 from 'd3';
   selector: 'app-patient-summary',
   templateUrl: './patient-summary.component.html',
   styleUrls: ['./patient-summary.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.Native
 })
 export class PatientSummaryComponent implements OnInit {
   @ViewChild('chart') private chartContainer: ElementRef;
