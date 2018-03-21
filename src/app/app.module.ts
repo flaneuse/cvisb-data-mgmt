@@ -24,6 +24,7 @@ import { CopyFilenameComponent } from './naming-conventions/copy-filename/copy-f
 import { SampleDetailsComponent } from './naming-conventions/sample-details/sample-details.component';
 import { PatientSummaryComponent } from './patient-tracker/patient-summary/patient-summary.component';
 import { StatusKeyComponent } from './patient-tracker/status-key/status-key.component';
+import { ExptTrackerComponent } from './expt-tracker/expt-tracker.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { StatusKeyComponent } from './patient-tracker/status-key/status-key.comp
     CopyFilenameComponent,
     SampleDetailsComponent,
     PatientSummaryComponent,
-    StatusKeyComponent
+    StatusKeyComponent,
+    ExptTrackerComponent
   ],
   imports: [
     BrowserModule,

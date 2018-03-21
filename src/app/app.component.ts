@@ -9,7 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CViSB broswer';
-  navLinks = [{ 'path': 'patient', 'label': 'patient-file browser' },
-  { 'path': 'sample-naming', 'label': 'sample file naming standards' },
-  { 'path': 'patient-tracker', 'label': 'patient tracker' }]
+  navLinks = [
+    { 'path': 'patient', 'label': 'patient-file browser' },
+    { 'path': 'sample-naming', 'label': 'sample file naming standards' },
+    { 'path': 'expt-tracker', 'label': 'experiment tracker' },
+    { 'path': 'patient-tracker', 'label': 'patient tracker' }
+  ]
 }
