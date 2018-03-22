@@ -6,19 +6,22 @@ import {
   MatAutocompleteModule, MatFormFieldModule, MatInputModule,
   MatChipsModule, MatTabsModule, MatTableModule, MatSelectModule,
   MatCheckboxModule, MatIconModule, MatSortModule, MatButtonModule,
-  MatSnackBarModule, MatPaginatorModule
+  MatSnackBarModule, MatPaginatorModule, MatExpansionModule,
+  MatDatepickerModule, MatNativeDateModule
 } from '@angular/material';
 
 @NgModule({
   imports: [MatAutocompleteModule, MatFormFieldModule, MatInputModule,
     MatChipsModule, MatTabsModule, MatTableModule, MatSelectModule,
     MatCheckboxModule, MatIconModule, MatSortModule, MatButtonModule,
-    MatSnackBarModule, MatPaginatorModule
+    MatSnackBarModule, MatPaginatorModule, MatExpansionModule,
+    MatDatepickerModule, MatNativeDateModule
   ],
   exports: [MatAutocompleteModule, MatFormFieldModule, MatInputModule,
     MatChipsModule, MatTabsModule, MatTableModule, MatSelectModule,
-  MatCheckboxModule, MatIconModule, MatSortModule, MatButtonModule,
-  MatSnackBarModule, MatPaginatorModule
-],
+    MatCheckboxModule, MatIconModule, MatSortModule, MatButtonModule,
+    MatSnackBarModule, MatPaginatorModule, MatExpansionModule,
+    MatDatepickerModule, MatNativeDateModule
+  ],
 })
 export class MaterialModule { }
