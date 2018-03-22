@@ -1,0 +1,30 @@
+<mat-accordion>
+  <mat-expansion-panel [expanded] = "true" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Experimental Parameters
+      </mat-panel-title>
+
+      <mat-panel-description>
+        input parameters to generate file names
+      </mat-panel-description>
+
+    </mat-expansion-panel-header>
+
+    <!-- FORM CONTENT -->
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+      <div *ngFor="let question of questions" class="form-element">
+        <app-param-field [question]="question" [form]="form"></app-param-field>
+      </div>
+
+      <div class="form-element">
+        <button mat-raised-button color="accent" type="submit" [disabled]="!form.valid">Create Experiment</button>
+      </div>
+    </form>
+
+    <div *ngIf="payLoad" class="form-row">
+      <strong>Saved the following values</strong><br>{{payLoad}}
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

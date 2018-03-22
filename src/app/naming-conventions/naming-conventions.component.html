@@ -1,0 +1,16 @@
+<!-- PATIENT OVERVIEW HEADER -->
+<app-patient-header (patientEmitter)="onPatientEmit($event)" (timeptEmitter)="onTimeptEmit($event)"></app-patient-header>
+
+<!-- EXPERIMENTAL PARAMETERS FORM -->
+<app-expt-params></app-expt-params>
+
+<div fxLayout='row'>
+<!-- COPY THE NAME -->
+  <div fxFlex>
+    <app-copy-filename [current_timept]="currentTimept" [current_patient]="currentPatient"></app-copy-filename>
+  </div>
+
+  <div fxFlex>
+    <app-sample-details></app-sample-details>
+  </div>
+</div>

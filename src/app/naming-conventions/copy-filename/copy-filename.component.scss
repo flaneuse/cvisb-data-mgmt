@@ -1,0 +1,42 @@
+@import '~_custom_colors.scss';
+
+table {
+  border-collapse: separate;
+  border-spacing: 30px 30px;
+}
+
+.file > td {
+  padding: 5px;
+}
+
+.copy-icon {
+  cursor: pointer;
+}
+
+.file-name {
+  border: $grey-300 solid 1px;
+  padding: 5px;
+}
+
+
+.file-name {
+  background-color: $lassa-lt;
+  transition: background-color 0.5s ease;
+  background-color: rgba(mat-color($custom-accent, 50), 0.3);
+}
+//
+// .file-name:hover {
+//   background-color: red;
+// }
+
+
+// a {
+//     background-color: #FF0;
+// }
+//
+// a:hover {
+//     background-color: #AD310B;
+//     -webkit-transition: background-color 1000ms linear;
+//     -ms-transition: background-color 1000ms linear;
+//     transition: background-color 1000ms linear;
+// }

@@ -1,0 +1,21 @@
+@import '~_custom_colors.scss';
+
+// #params-form {
+//   background-color: rgba($grey-200, 0.3);
+//   border-radius: 5px;
+//   padding-top: 10px;
+//   padding-left: 25px;
+//   padding-right: 25px;
+//   padding-bottom: 10px;
+// }
+
+/deep/ .mat-expanded.mat-expansion-panel-spacing {
+    background-color: rgba($grey-200, 0.3);
+}
+
+h3 {
+  font-weight: 300;
+  color: $grey-600;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
