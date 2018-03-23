@@ -54,6 +54,10 @@ $custom-green: (
 
 $custom-accent: $custom-green;
 
+$accent-900: mat-color($custom-accent, 900); //#0c5934;
+$accent-700:    mat-color($custom-accent, 700); //#41875E;
+$accent-500:    mat-color($custom-accent, 500); //#70b78b;
+$accent-100:    mat-color($custom-accent, 100); //#a1eabb;
 
 // sample status
 $abandoned-color: white;
@@ -63,7 +67,6 @@ $started-color: #F1E462;
 $raw-color: #C8E76E;
 $complete-color: #70b78b;
 
-$green: #70b78b;
 // '#41875E','#93C86B','#F1E462','#CFBF98','#d3d9de'
 //
 
@@ -83,6 +86,13 @@ $male-color: #f57f17;
 $female-color: #7e57c2;
 
 // Common coloring stylings
+h3 {
+  font-weight: 300;
+  color: $grey-400;
+  margin-bottom: 0;
+}
+
+
 .complete {
   color: $complete-color;
 }
@@ -90,25 +100,43 @@ $female-color: #7e57c2;
 // statuses
 .s0 {
   background-color: $abandoned-color;
+  fill: $abandoned-color;
+  stroke: $grey-400;
+  stroke-width: 1px;
 }
 
 .s1 {
   background-color: $nosample-color;
+  fill: $nosample-color;
+  stroke: $grey-400;
+  stroke-width: 1px;
 }
 
 .s2 {
   background-color: $notstarted-color;
+  fill: $notstarted-color;
+  stroke: $grey-400;
+  stroke-width: 1px;
 }
 
 
 .s3 {
   background-color: $started-color;
+  fill: $started-color;
+  stroke: $grey-400;
+  stroke-width: 1px;
 }
 
 .s4 {
   background-color: $raw-color;
+  fill: $raw-color;
+  stroke: $grey-400;
+  stroke-width: 1px;
 }
 
 .s5 {
   background-color: $complete-color;
+  fill: $complete-color;
+  stroke: $grey-400;
+  stroke-width: 1px;
 }
