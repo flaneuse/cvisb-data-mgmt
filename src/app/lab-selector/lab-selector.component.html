@@ -1,0 +1,23 @@
+<!-- FILTERING OPTIONS -->
+<!-- <mat-form-field>
+  <mat-select placeholder="Lab" multiple [(value)]="sel_lab">
+    <mat-option *ngFor="let lab of labs" [value]="lab">{{ lab }}</mat-option>
+  </mat-select>
+</mat-form-field> -->
+
+<div class="checkbox-grp">
+  <h3>Filter by lab</h3>
+  <section class="checkbox-horiz-grp" id="lab-selector">
+    <mat-checkbox *ngFor="let lab of lab_opts; let i = index" #lab_check color="primary" class="checkbox-horiz" checked="true" (change)="filterLabs(lab_check.value, lab_check.checked)" [value]="lab">{{lab}}</mat-checkbox>
+  </section>
+</div>
+
+
+
+<!-- <li *ngFor="let obj of labs">
+   <a href="#" class="small" data-value="option1" tabIndex="-1">
+<input type="checkbox"
+    (change)="expression && expression[obj.name]=$event.target.checked ? true : undefined"
+    [ngModel]="expression && expression[obj.name]">
+   </a>
+</li> -->

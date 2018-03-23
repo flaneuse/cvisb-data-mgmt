@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 
-import { Experiment, Param } from '../classes/experiment';
-
-
+import { Experiment, Param, ExptParams } from '../classes/experiment';
 
 @Injectable()
 export class GetExptListService {
   public expts: Array<Experiment>;
   private alltimepts: Array<number> = [1, 2, 3, 4, 7, 10];
+  private mess: any;
 
   constructor() { }
 
@@ -64,14 +63,20 @@ export class GetExptListService {
       expt_label: 'HLA sequencing', expt_description: 'HLA typing',
       expt_cat: 'sequencing', cat_order: 3, file_types: ['.csv', '.bam'],
       params: [
-        new Param("library prep version", [], "input"),
-        new Param("Analysis pipeline version", ["Illumina TruSight HLA v2"], "select"),
-        new Param("read length", [], "input"),
-        new Param("Sequencing Technology", ["Illumina"], "select"),
-        new Param("Sequencing Platform", ["MiSeq"], "select"),
-        new Param("Sequencing Instrument ID", [], "input"),
-        new Param("Sequencing Center", ["TSRI"], "select"),
-        new Param("replicate", [], "checkbox")
+        new ExptParams({ "controlType": "textbox", "key": "library", "label": "library prep version" }),
+        new ExptParams({
+          "controlType": "dropdown", "key": "analysis_version", "label": "Analysis pipeline version",
+          "options": [{ "key": "trusight", "value": "Illumina TruSight HLA v2" }]
+        }),
+        new ExptParams({ "controlType": "textbox", "key": "read_length", "label": "read length"}),
+        new ExptParams({ "controlType": "dropdown", "key": "seq_tech", "label": "Sequencing Technology",
+      "options": [{"key": "illumina", "value": "Illumina"}]}),
+        new ExptParams({ "controlType": "dropdown", "key": "seq_platform", "label": "Sequencing Platform",
+        "options": [{"key": "miseq", "value": "MiSeq"}]}),
+        new ExptParams({ "controlType": "textbox", "key": "sequencer_id", "label": "Sequencing Instrument ID"}),
+        new ExptParams({ "controlType": "dropdown", "key": "seq_ctr", "label": "Sequencing Center",
+        "options": [{"key": "tsri", "value": "TSRI"}]}),
+        new ExptParams({ "controlType": "textbox", "key": "replicate", "label": "replicate" })
       ],
       timepoints: [1],
       dropbox: '/CViSB/Data/Sequencing - HLA/'
@@ -182,6 +187,102 @@ export class GetExptListService {
     let labs = new Set(lablist);
 
     return labs;
+  }
+
+  getReqParams() {
+    let expts = this.createExptList();
+
+    let expt_list = [];
+
+
+    for (var i = 0; i < expts.length; i++) {
+      let tmp = {};
+      tmp['key'] = expts[i].expt_type;
+      tmp['value'] = expts[i].expt_label;
+
+      expt_list.push(tmp)
+    }
+
+
+    let questions: ExptParams<any>[] = [
+// TODO: add required
+      new ExptParams({
+        controlType: 'dropdown',
+        required: false,
+        key: 'expt_type',
+        label: 'experiment',
+        options: expt_list,
+        order: 1
+      }),
+
+      new ExptParams({
+        controlType: 'date',
+        required: false,
+        key: 'expt_date',
+        label: 'experiment date',
+        order: 3
+      }),
+
+      new ExptParams({
+        controlType: 'dropdown',
+        required: false,
+        key: 'sample_id',
+        label: 'sample ID',
+        options: [
+          { key: 'vDNA', value: 'viral DNA' },
+          { key: 'hDNA', value: 'host DNA' }
+        ],
+        order: 2
+      })
+
+    ];
+
+    return questions.sort((a, b) => a.order - b.order);
+  }
+
+  getExptParams(expt_type: string) {
+    if (expt_type) {
+      let expts = this.createExptList();
+
+      expts = expts.filter(d => d.expt_type === expt_type)
+
+      let params = expts.map(d => d.params);
+      console.log('filtered params')
+      console.log(params[0]);
+
+      // let e: ExptParams<any>[] = [
+      //
+      //
+      //   new ExptParams({
+      //     controlType: 'date',
+      //     key: 'new1',
+      //     label: 'gfdgds date',
+      //     order: 3
+      //   }),
+      //
+      //   new ExptParams({
+      //     controlType: 'dropdown',
+      //     key: 'jfdks',
+      //     label: 'fdsfds ID',
+      //     options: [
+      //       { key: 'vDNA', value: 'viral DNA' },
+      //       { key: 'hDNA', value: 'host DNA' }
+      //     ],
+      //     order: 2
+      //   })
+      //
+      // ];
+      return params[0].sort((a, b) => a.order - b.order);
+    } else {
+      return [];
+    }
+  }
+
+  getParams() {
+
+
+
+    // return params.sort((a, b) => a.order - b.order);
   }
 
 

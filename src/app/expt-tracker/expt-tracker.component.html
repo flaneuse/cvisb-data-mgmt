@@ -1,3 +1,18 @@
-<p>
-  expt-tracker works!
-</p>
+<!-- Filter by lab -->
+<app-lab-selector></app-lab-selector>
+
+<div class='small-multiple' *ngFor="let expt of expts">
+  <h2>{{ expt }}</h2>
+
+  <div class="containerX">
+    <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex fxLayoutGap="100px">
+      <!-- Plot cumulative summary as bar graph-->
+      <app-expt-summary fxFlex="35" [data]="sampleStatuses[expt]"></app-expt-summary>
+
+      <!-- Plot individual patients by experiment as a grid -->
+      <app-grid-plot fxFlex [data]="sampleStatuses[expt]"></app-grid-plot>
+    </div>
+  </div>
+
+
+</div>

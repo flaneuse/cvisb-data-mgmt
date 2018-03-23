@@ -25,10 +25,11 @@ import { SampleDetailsComponent } from './naming-conventions/sample-details/samp
 import { PatientSummaryComponent } from './patient-tracker/patient-summary/patient-summary.component';
 import { StatusKeyComponent } from './patient-tracker/status-key/status-key.component';
 import { ExptTrackerComponent } from './expt-tracker/expt-tracker.component';
-import { DynamicFormComponent } from './naming-conventions/expt-params/dynamic-form/dynamic-form.component';
-import { DynamicFormQuestionComponent } from './naming-conventions/expt-params/dynamic-form-question/dynamic-form-question.component';
 import { ParamFieldComponent } from './naming-conventions/expt-params/param-field/param-field.component';
 import { ParamsFormComponent } from './naming-conventions/expt-params/params-form/params-form.component';
+import { GridPlotComponent } from './expt-tracker/grid-plot/grid-plot.component';
+import { LabSelectorComponent } from './lab-selector/lab-selector.component';
+import { ExptSummaryComponent } from './expt-tracker/expt-summary/expt-summary.component';
 
 
 @NgModule({
@@ -48,10 +49,11 @@ import { ParamsFormComponent } from './naming-conventions/expt-params/params-for
     PatientSummaryComponent,
     StatusKeyComponent,
     ExptTrackerComponent,
-    DynamicFormComponent,
-    DynamicFormQuestionComponent,
     ParamFieldComponent,
-    ParamsFormComponent
+    ParamsFormComponent,
+    GridPlotComponent,
+    LabSelectorComponent,
+    ExptSummaryComponent
   ],
   imports: [
     BrowserModule,

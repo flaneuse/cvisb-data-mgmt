@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatusKeyComponent implements OnInit {
 
-  private codes: Object = [{'code': 0, 'status': 'experiment abandoned'},
+  private codes: Array<Object> = [{'code': 0, 'status': 'experiment abandoned'},
 {'code': 1, 'status': 'sample not arrived'},
 {'code': 2, 'status': 'not started'},
 {'code': 3, 'status': 'started'},
