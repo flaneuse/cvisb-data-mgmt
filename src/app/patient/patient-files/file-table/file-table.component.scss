@@ -1,0 +1,19 @@
+@import '~_custom_colors.scss';
+
+.mat-row {
+  border-bottom: none;
+}
+
+.file-path {
+  color: $grey-400;
+  font-size: 0.75em;
+}
+
+
+mat-icon {
+  color: $grey-300;
+}
+
+.timepoint::before {
+  content: "T";
+}
