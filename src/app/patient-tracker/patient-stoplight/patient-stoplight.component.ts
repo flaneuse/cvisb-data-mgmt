@@ -1,27 +1,42 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnChanges, ViewChild, Input } from '@angular/core';
 
 import { MatTableDataSource, MatSort, MatPaginator, MatChip } from '@angular/material';
+
+import { Experiment } from '../../classes/experiment';
+import { GetSampleStatusService } from '../../data-services/get-sample-status.service';
+import { GetExptListService } from '../../data-services/get-expt-list.service';
 
 @Component({
   selector: 'app-patient-stoplight',
   templateUrl: './patient-stoplight.component.html',
-  styleUrls: ['./patient-stoplight.component.scss']
+  styleUrls: ['./patient-stoplight.component.scss'],
+  providers: [GetSampleStatusService, GetExptListService]
 })
 
 export class PatientStoplightComponent implements OnInit {
-  expts = ['patient metadata','Piccolo metabolites', 'Kenzen sensors', 'HLA sequencing','Amplicon virus sequencing', 'Metagenomic sequencing', 'BCR repertoire', 'TCR repertoire', 'Antibody functional data', 'qPCR viral load'];
+  @Input() private sel_labs: Set<string>;
 
-  displayedColumns = ['patient_id', 'timepoint'].concat(this.expts).concat('total_complete');
+  all_expts: Array<Experiment> = [];
+  expts: Array<string>;
+  displayedColumns: Array<string> = [];
 
-  dataSource = new MatTableDataSource(fakeData);
+  fakeData: any;
+  dataSource: any;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor() { }
+  constructor(private sampleSvc: GetSampleStatusService, private exptSvc: GetExptListService) { }
 
   ngOnInit() {
-    // console.log(fakeData);
+    this.fakeData = this.sampleSvc.createFakePatients();
+
+    console.log(this.fakeData)
+    this.dataSource = new MatTableDataSource(this.fakeData);
+
+// Filter out just the relevant expts.
+    this.all_expts = this.exptSvc.createExptList();
+    this.filterExpts();
   }
 
   ngAfterViewInit() {
@@ -29,83 +44,18 @@ export class PatientStoplightComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-}
-
-
-
-let sampleStatus = function() {
-  let statuses = [0, 1, 2, 3, 4, 5]
-  return statuses[Math.floor(Math.random() * statuses.length)];
-}
-
-let sampleReview = function() {
-  let statuses = [4,5];
-  return statuses[Math.floor(Math.random() * statuses.length)];
-}
-
-
-let fakeTimepts = function() {
-  const rand_num = Math.random();
-
-  var timepts = [1,2,3,4,7,10];
-
-  if (rand_num < 0.4) {
-    return timepts[0];
-  } else if (rand_num < 0.6) {
-    return timepts[1];
-  } else if (rand_num < 0.6) {
-    return timepts[2];
-  } else if (rand_num < 0.6) {
-    return timepts[3];
-  } else if (rand_num < 0.6) {
-    return timepts[4];
-  } else return timepts[5];
-
-}
-
-let calcFinished = function(patient, completed_code = 5) {
-  let tmp = patient;
-  // delete tmp.patient_id;
-  // delete tmp.timepoints;
-
-  // console.log(tmp)
-
-  const add = (accumulator, currentValue) => accumulator + currentValue;
-
-  let score = Object.values(tmp).map(d => d === completed_code).reduce(add)
-  return score;
-}
-
-let fakePatient = function(i) {
-  let patient = {
-    'patient_id': 'G' + String(i).padStart(5, '0'),
-    'timepoints': fakeTimepts(),
-    'patient metadata': sampleReview(),
-    'Piccolo metabolites': sampleReview(),
-    'Kenzen sensors': sampleReview(),
-    'HLA sequencing': sampleStatus(),
-    'Amplicon virus sequencing': sampleStatus(),
-    'Metagenomic sequencing': sampleStatus(), 'BCR repertoire': sampleStatus(), 'TCR repertoire': sampleStatus(), 'Antibody functional data': sampleStatus(), 'qPCR viral load': sampleStatus()
-
+  ngOnChanges() {
+    this.filterExpts();
   }
 
-  patient['completed'] = calcFinished(patient);
+// TODO: recalculate totals.
+  filterExpts() {
+    // filter out those selected by checkboxes; return just the names.
+    this.expts = this.all_expts
+    .filter(d => this.sel_labs.has(d.lab))
+    .map(d => d.expt_label);
 
-  return patient;
-}
-
-let createFakePatients = function(num_patients: number = 20) {
-  var arr = [];
-
-  for (var i = 0; i < num_patients; i++) {
-    arr.push(fakePatient(i));
+    this.displayedColumns = ['patient_id', 'timepoint'].concat(this.expts).concat('total_complete');
   }
 
-  arr.sort(function(a,b) {
-    return b.completed - a.completed;
-  })
-  return arr;
-
 }
-
-const fakeData = createFakePatients();

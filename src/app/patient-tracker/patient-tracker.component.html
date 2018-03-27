@@ -2,7 +2,7 @@
 
 <!-- FILTERING OPTIONS + KEY -->
 <div fxLayout="row" fxLayoutAlign="space-between">
-  <app-lab-selector></app-lab-selector>
+  <app-lab-selector (changeLabs) = "filterLabs($event)"></app-lab-selector>
 
   <app-status-key></app-status-key>
 
