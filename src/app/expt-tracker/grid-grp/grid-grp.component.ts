@@ -28,8 +28,6 @@ export class GridGrpComponent implements OnInit {
     let arr = [];
 
     for(var i = 0; i < this.codes.length; i++) {
-      // console.log(i)
-
       let code = this.codes[i].code;
       // console.log(code)
       this.filteredData[code] = this.data.filter(d => d === code);
@@ -38,6 +36,7 @@ export class GridGrpComponent implements OnInit {
     // console.log(this.filteredData)
     var lengths = (this.filteredData.map(d => d.length));
     // console.log(lengths)
+    // TODO: clean up sizing, add resizing on window change
     this.maxNum = Math.max(... this.filteredData.map(d => d.length));
   }
 

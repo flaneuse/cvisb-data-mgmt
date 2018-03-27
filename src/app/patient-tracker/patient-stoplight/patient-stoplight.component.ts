@@ -51,9 +51,7 @@ export class PatientStoplightComponent implements OnInit {
 // TODO: recalculate totals.
   filterExpts() {
     // filter out those selected by checkboxes; return just the names.
-    this.expts = this.all_expts
-    .filter(d => this.sel_labs.has(d.lab))
-    .map(d => d.expt_label);
+    this.expts = this.exptSvc.getExptNames(this.sel_labs);
 
     this.displayedColumns = ['patient_id', 'timepoint'].concat(this.expts).concat('total_complete');
   }

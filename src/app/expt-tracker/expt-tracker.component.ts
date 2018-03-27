@@ -1,12 +1,13 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 import { GetSampleStatusService } from '../data-services/get-sample-status.service';
+import { GetExptListService } from '../data-services/get-expt-list.service';
 
 @Component({
   selector: 'app-expt-tracker',
   templateUrl: './expt-tracker.component.html',
   styleUrls: ['./expt-tracker.component.scss'],
-  providers: [GetSampleStatusService],
+  providers: [GetSampleStatusService, GetExptListService],
 })
 export class ExptTrackerComponent implements OnInit {
 
@@ -18,7 +19,7 @@ export class ExptTrackerComponent implements OnInit {
   nonExptCols: Array<string> = ['patient_id', 'timepoints', 'done', 'completed'];
 
 
-  constructor(private sampleSvc: GetSampleStatusService) { }
+  constructor(private sampleSvc: GetSampleStatusService, private exptSvc: GetExptListService) { }
 
   ngOnInit() {
     this.fakeData = this.sampleSvc.createFakePatients();
@@ -41,11 +42,7 @@ export class ExptTrackerComponent implements OnInit {
   filterLabs(selLabs: Set<string>) {
     this.labs = new Set(selLabs);
 
-    if (selLabs.size > 2) {
-      this.expts = ['ELISA', 'Amplicon virus sequencing'];
-    } else {
-      this.expts = ['HLA sequencing'];
-    }
+    this.expts = this.exptSvc.getExptNames(selLabs);
   }
 
   getStatuses() {
