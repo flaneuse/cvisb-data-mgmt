@@ -12,7 +12,7 @@ import { Patient } from '../../classes/patient';
   styleUrls: ['./copy-filename.component.scss']
 })
 export class CopyFilenameComponent implements OnInit {
-    @Input() private current_patient: Patient;
+    @Input() private current_patient: string;
     @Input() private current_timept: number;
 
     private file_ext: Array<string> = ['.bam', '.csv'];
@@ -31,7 +31,7 @@ export class CopyFilenameComponent implements OnInit {
     }
 
     ngOnChanges(){
-      this.current_file = new Filename(this.current_patient.patient_id, this.current_timept, 'b', 'c');
+      this.current_file = new Filename(this.current_patient, this.current_timept, 'b', 'c');
     }
 
 
