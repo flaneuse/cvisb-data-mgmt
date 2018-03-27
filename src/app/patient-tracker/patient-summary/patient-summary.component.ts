@@ -8,6 +8,7 @@ import * as d3 from 'd3';
   styleUrls: ['./patient-summary.component.scss'],
   encapsulation: ViewEncapsulation.Native
 })
+
 export class PatientSummaryComponent implements OnInit {
   @ViewChild('chart') private chartContainer: ElementRef;
   @Input() private num_total: number;
@@ -40,7 +41,7 @@ export class PatientSummaryComponent implements OnInit {
       .attr("height", this.height + this.margin.top + this.margin.bottom);
 
     var g = svg.append('g')
-      .attr('transform', "translate(" + this.margin.left + ", " + this.margin.top + ")")
+      .attr('transform', "translate(" + this.margin.left + ", " + this.margin.top + ")");
 
 
     // // ALIGNED LEFT VERSION
