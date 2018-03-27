@@ -1,18 +1,19 @@
 <!-- Filter by lab -->
-<app-lab-selector></app-lab-selector>
+<app-lab-selector (changeLabs) = "filterLabs($event)"></app-lab-selector>
+
 
 <div class='small-multiple' *ngFor="let expt of expts">
   <h2>{{ expt }}</h2>
 
-  <div class="containerX">
-    <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex fxLayoutGap="100px">
+    <div fxLayout="row wrap" class='one' fxLayoutGap="100px" fxFlex fxLayout.xs="column" fxLayout.sm="column">
       <!-- Plot cumulative summary as bar graph-->
-      <app-expt-summary fxFlex="35" [data]="sampleStatuses[expt]"></app-expt-summary>
+      <app-expt-summary class='one' fxFlex="40%" [data]="sampleStatuses[expt]"></app-expt-summary>
 
       <!-- Plot individual patients by experiment as a grid -->
-      <app-grid-plot fxFlex [data]="sampleStatuses[expt]"></app-grid-plot>
+      <div class='gridplot one' fxFlex="calc(40% - 100px)">
+        <app-grid-grp [data]="sampleStatuses[expt]"></app-grid-grp>
+      </div>
     </div>
+
+    <mat-divider></mat-divider>
   </div>
-
-
-</div>

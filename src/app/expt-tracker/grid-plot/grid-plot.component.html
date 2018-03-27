@@ -1,5 +1,6 @@
 <div class="cummulative-summary">
-  <h3>What stage are samples stuck in?</h3>
+  <h4 [ngClass]="['stuck', code]">{{ status.stuck_label }}</h4>
+  <h5>{{ status.label }}</h5>
 
   <div #chart class="gridplot">
   </div>

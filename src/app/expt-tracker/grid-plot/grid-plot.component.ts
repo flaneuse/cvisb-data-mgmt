@@ -14,6 +14,13 @@ export class GridPlotComponent implements OnInit {
 
   @ViewChild('chart') private chartContainer: ElementRef;
   @Input() private data: Array<number>;
+  @Input() private max_num: number;
+  @Input() private current_code: number;
+  @Input() private status: Object;
+  @Input() private code: number;
+
+
+  @Input() filtered_data: Array<number>;
 
   private element: any;
   private margin: number = 25;
@@ -21,14 +28,12 @@ export class GridPlotComponent implements OnInit {
   private height: number;
 
   private spacing: number = 1 / 4; // factor for how much white space will be between the rectangles, in rectangular units
-  private diameter: number;
-  private grid_width: number;
+  private diameter: number = 18;
+  private grid_width: number = 5;
 
   constructor() { }
 
   ngOnInit() {
-
-
     this.plotGridPlot();
   }
 
@@ -39,22 +44,25 @@ export class GridPlotComponent implements OnInit {
     let element_dims = this.element.getBoundingClientRect();
 
     // specify width of SVG to keep aspect ratio of axes at 1.
-    let svg_width = Math.min(this.element.offsetWidth, this.element.offsetHeight);
+    // let svg_width = Math.min(this.element.offsetWidth, this.element.offsetHeight);
+    let svg_width = 250;
     this.width = svg_width - this.margin * 2;
     this.height = svg_width - this.margin * 2;
 
     // Determine the number per row to be whatever most closely generates a square
-    let num_patients = this.data.length;
-    this.grid_width = Math.ceil(Math.sqrt(num_patients));
-
-    // Determine a nice spacing between the squares
-    let white_space = (this.grid_width - 1) * this.spacing;
-    this.diameter = Math.round((this.width / (this.grid_width + white_space)));
+    // let num_patients = this.data.length;
+    let num_patients = 40;
+    this.grid_width = Math.ceil(Math.sqrt(this.max_num));
+    //
+    // // Determine a nice spacing between the squares
+    // let white_space = (this.grid_width - 1) * this.spacing;
+    // this.diameter = Math.round((this.width / (this.grid_width + white_space)));
 
 
     // define SVG container
     const svg = d3.select(this.element)
       .append('svg')
+      // .style('background-color', 'aliceblue')
       .attr("width", this.width + this.margin * 2)
       .attr("height", this.height + this.margin * 2);
 
@@ -77,7 +85,7 @@ export class GridPlotComponent implements OnInit {
 
     // Grid plot
     g.selectAll('.grid')
-      .data(this.data)
+      .data(this.filtered_data)
       .enter().append('rect')
       .attr('class', (d, i) => 's' + d)
       .classed('grid', true)
