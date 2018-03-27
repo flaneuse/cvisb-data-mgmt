@@ -9,6 +9,10 @@ import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {FlexLayoutModule} from "@angular/flex-layout";
 
+// TEMPORARY FIX FOR FAKE DATA
+// TODO: remove me with real data
+import { GetPatientRosterService } from './data-services/get-patient-roster.service';
+
 // Custom components
 import { AppComponent } from './app.component';
 import { PatientComponent } from './patient/patient.component';
@@ -30,6 +34,9 @@ import { ParamsFormComponent } from './naming-conventions/expt-params/params-for
 import { GridPlotComponent } from './expt-tracker/grid-plot/grid-plot.component';
 import { LabSelectorComponent } from './lab-selector/lab-selector.component';
 import { ExptSummaryComponent } from './expt-tracker/expt-summary/expt-summary.component';
+import { ExptDetailsComponent } from './naming-conventions/expt-params/expt-details/expt-details.component';
+import { FileTableComponent } from './patient/patient-files/file-table/file-table.component';
+import { GridGrpComponent } from './expt-tracker/grid-grp/grid-grp.component';
 
 
 @NgModule({
@@ -53,7 +60,10 @@ import { ExptSummaryComponent } from './expt-tracker/expt-summary/expt-summary.c
     ParamsFormComponent,
     GridPlotComponent,
     LabSelectorComponent,
-    ExptSummaryComponent
+    ExptSummaryComponent,
+    ExptDetailsComponent,
+    FileTableComponent,
+    GridGrpComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +74,7 @@ import { ExptSummaryComponent } from './expt-tracker/expt-summary/expt-summary.c
     AppRoutingModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [GetPatientRosterService], // TODO: remove when get real data
   bootstrap: [AppComponent]
 })
 export class AppModule { }
