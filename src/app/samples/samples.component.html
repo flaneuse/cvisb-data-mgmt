@@ -3,12 +3,8 @@
 <!-- PATIENT DATA -->
 <ng-container id='patient_data' *ngIf='currentPatient'>
 
-  <!-- Data files table -->
-  <app-patient-files [current_patient]='currentPatient'></app-patient-files>
-
-
   <!-- Sample table -->
-  <!-- <app-sample-loc [current_patient]='currentPatient'></app-sample-loc> -->
+  <app-sample-loc [current_patient]='currentPatient'></app-sample-loc>
 
 
 </ng-container>

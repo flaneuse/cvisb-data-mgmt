@@ -4,7 +4,7 @@
   <!-- ID Column -->
   <ng-container matColumnDef="sample_id">
     <mat-header-cell *matHeaderCellDef mat-sort-header>sample ID</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{current_patient['patient_id']}}_{{element.sample_id}}_T{{current_patient['timepoints'][0]}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.sample_id}} </mat-cell>
   </ng-container>
 
   <!-- Timepoint Column -->
@@ -12,7 +12,8 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>timepoint</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <mat-chip class="timepoint">
-        {{current_patient['timepoints'][0]}}
+        <!-- {{current_patient['timepoints'][0]}} -->
+        {{ element.timepoint }}
       </mat-chip>
     </mat-cell>
   </ng-container>
@@ -71,3 +72,7 @@
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
 </mat-table>
+
+<!-- PAGINATION -->
+<mat-paginator #paginator [pageSize]="12" [pageSizeOptions]="[6, 12, 20]">
+</mat-paginator>
