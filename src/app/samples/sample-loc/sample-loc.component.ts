@@ -13,6 +13,7 @@ import { GetSampleListService } from '../../data-services/get-sample-list.servic
 })
 export class SampleLocComponent implements OnInit {
   @Input() private current_patient: Object;
+  @Input() private current_timepoint: number;
 
   private storage_locs: Array<Object> = [
     { 'loc_id': 'SL1', 'institution': 'Sierra Leone', 'location': 'KGH' },
@@ -39,17 +40,12 @@ export class SampleLocComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sample_types = this.sampleSvc.createFakeSamples(this.current_patient.patient_id);
-    console.log(this.sample_types)
+    this.getSamples();
 
-    this.dataSource = new MatTableDataSource(this.sample_types);
   }
 
   ngOnChanges() {
-    this.sample_types = this.sampleSvc.createFakeSamples(this.current_patient.patient_id);
-    console.log(this.sample_types)
-
-    this.dataSource = new MatTableDataSource(this.sample_types);
+    this.getSamples();
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
@@ -57,6 +53,17 @@ export class SampleLocComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+  }
+
+  getSamples() {
+    this.sample_types = this.sampleSvc.createFakeSamples(this.current_patient.patient_id);
+    // TODO: move to service
+    if (this.current_timepoint) {
+      this.sample_types = this.sample_types.filter(d => d.timepoint === this.current_timepoint);
+    }
+    console.log(this.sample_types)
+
+    this.dataSource = new MatTableDataSource(this.sample_types);
   }
 
 }

@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SamplesComponent implements OnInit {
 
   currentPatient: Object;
+  currentTimept: number;
 
   constructor() {}
 
@@ -16,6 +17,10 @@ export class SamplesComponent implements OnInit {
 
   onPatientEmit(current_patient) {
     this.currentPatient = current_patient;
+  }
+
+  onTimepointEmit(current_tp) {
+    this.currentTimept = current_tp;
   }
 
   ngOnChanges() {

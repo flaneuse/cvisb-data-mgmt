@@ -1,10 +1,10 @@
-<app-patient-header (patientEmitter)="onPatientEmit($event)"></app-patient-header>
+<app-patient-header (timeptEmitter) = "onTimepointEmit($event)" (patientEmitter)="onPatientEmit($event)"></app-patient-header>
 
 <!-- PATIENT DATA -->
 <ng-container id='patient_data' *ngIf='currentPatient'>
 
   <!-- Sample table -->
-  <app-sample-loc [current_patient]='currentPatient'></app-sample-loc>
+  <app-sample-loc [current_patient]='currentPatient' [current_timepoint] = 'currentTimept'></app-sample-loc>
 
 
 </ng-container>
