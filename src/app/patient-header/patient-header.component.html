@@ -30,13 +30,14 @@
     </li>
 
     <mat-chip-list class='timepoints'>
-      <mat-chip class="timepoint" *ngFor="let timept of currentPatient.timepoints">
-        {{ timept }}
+      <mat-chip class="timepoint" *ngFor="let timept of timepoints" [selected]="timept.state" (click)="highlightTimepoint($event, timept)">
+        {{ timept.timepoint }}
       </mat-chip>
     </mat-chip-list>
 
   </ng-container>
 
+<!-- <h1>{{selTimepoint}}</h1> -->
 
 </nav>
 <!-- end of patient overview -->
