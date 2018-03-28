@@ -15,7 +15,7 @@
     <form (ngSubmit)="onSubmit()" [formGroup]="form">
 
       <div *ngFor="let question of questions" class="form-element">
-        <app-param-field [question]="question" [form]="form"></app-param-field>
+        <app-param-field (exptEmitter)="changeExpt($event)" [question]="question" [form]="form" ></app-param-field>
       </div>
 
       <div class="form-element">

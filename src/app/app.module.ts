@@ -12,12 +12,13 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 // TEMPORARY FIX FOR FAKE DATA
 // TODO: remove me with real data
 import { GetPatientRosterService } from './data-services/get-patient-roster.service';
+import { GetExptListService } from './data-services/get-expt-list.service'; // needed for parent-grandchild comms
 
 // Custom components
 import { AppComponent } from './app.component';
 import { PatientComponent } from './patient/patient.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { SampleLocComponent } from './patient/sample-loc/sample-loc.component';
+import { SampleLocComponent } from './samples/sample-loc/sample-loc.component';
 import { PatientFilesComponent } from './patient/patient-files/patient-files.component';
 import { NamingConventionsComponent } from './naming-conventions/naming-conventions.component';
 import { ExptParamsComponent } from './naming-conventions/expt-params/expt-params.component';
@@ -76,7 +77,9 @@ import { SamplesComponent } from './samples/samples.component';
     AppRoutingModule,
     FlexLayoutModule
   ],
-  providers: [GetPatientRosterService], // TODO: remove when get real data
+  providers: [GetPatientRosterService,
+    GetExptListService
+  ], // TODO: remove when get real data
   bootstrap: [AppComponent]
 })
 export class AppModule { }

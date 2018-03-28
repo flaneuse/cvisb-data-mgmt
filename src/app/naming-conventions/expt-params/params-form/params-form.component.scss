@@ -1,4 +1,19 @@
+@import '~_custom_colors.scss';
+
+// Spacing between form elements
 .form-element{
   margin-right: 50px;
   display: inline-block;
+}
+
+// Accordion form
+/deep/ mat-expansion-panel.mat-expansion-panel, .mat-expanded.mat-expansion-panel-spacing {
+    background-color: rgba($grey-200, 0.3);
+}
+
+// Labels for each form element
+/deep/ .mat-expanded.mat-expansion-panel-spacing label {
+  color: $accent-500;
+  text-transform: uppercase;
+  font-weight: 300;
 }

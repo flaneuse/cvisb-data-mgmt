@@ -1,17 +1,35 @@
 import { Injectable } from '@angular/core';
 
+// Import classes for data objects
 import { Experiment, ExptParams } from '../classes/experiment';
+
+// Import subject, which allows for comms b/w observables and observers
+import { Subject } from 'rxjs/Subject';
+// import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class GetExptListService {
   public expts: Array<Experiment>;
   private alltimepts: Array<number> = [1, 2, 3, 4, 7, 10];
-  private mess: any;
 
   constructor() { }
 
-  createExptList() {
+// EVENT LISTENER: change experiment type
+  // Observable string sources
+  private exptAnnouncedSource = new Subject<Array<Experiment>>();
 
+  // Observable string streams
+  exptAnnounced$ = this.exptAnnouncedSource.asObservable();
+
+  // Service message commands
+  changeExpt(new_expt: string) {
+    let new_params = this.getExptParams(new_expt);
+
+    this.exptAnnouncedSource.next(new_params);
+  }
+
+  // Create schema for different types of experiments
+  createExptList() {
     var metadata: Experiment = {
       lab: 'Tulane', expt_type: 'metadata',
       expt_label: 'patient metadata', expt_description: 'patient metadata',
@@ -373,7 +391,12 @@ export class GetExptListService {
       console.log('filtered params')
       console.log(params[0]);
 
-      return params[0].sort((a, b) => a.order - b.order);
+      if (params.length > 0) {
+
+        return params[0].sort((a, b) => a.order - b.order);
+      } else {
+        return [];
+      }
     } else {
       return [];
     }
@@ -383,8 +406,8 @@ export class GetExptListService {
     let all_expts = this.createExptList();
 
     let expts = all_expts
-    .filter(d => sel_labs.has(d.lab))
-    .map(d => d.expt_label);
+      .filter(d => sel_labs.has(d.lab))
+      .map(d => d.expt_label);
 
     return expts;
   }
