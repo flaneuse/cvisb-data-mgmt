@@ -67,7 +67,7 @@ export class GetExptListService {
     };
 
     var qpcr: Experiment = {
-      lab: 'Tulane', expt_type: 'qpcr',
+      lab: 'Andersen', expt_type: 'qpcr',
       expt_label: 'qPCR viral load', expt_description: 'qPCR viral load',
       expt_cat: 'clinical_data', cat_order: 1, file_types: ['.csv'],
       params: [],

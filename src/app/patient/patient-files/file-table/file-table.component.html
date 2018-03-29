@@ -1,16 +1,17 @@
 <mat-table #files [dataSource]="dataSource" matSort>
   <!-- File Name Column -->
   <ng-container matColumnDef="file">
-    <!-- TODO: loop -->
-    <!-- TODO: hyperlink -->
-    <!-- TODO: file path -->
     <mat-header-cell *matHeaderCellDef mat-sort-header>file</mat-header-cell>
-    <mat-cell *matCellDef="let element">
+    <mat-cell *matCellDef="let element" [ngClass] = "[element.status.key]">
       <div class="file-name">
-        {{current_patient['patient_id']}}_T{{current_patient['timepoints'][0]}}_{{element.expt_id}}{{element.file_types[0]}}
+        <a href="{{dropbox_url}}{{element.url}}" target="_blank">
+          {{element.filename}}
+        </a>
       </div>
       <div class="file-path">
-        {{element.dropbox}}{{current_patient['patient_id']}}_T{{current_patient['timepoints'][0]}}_{{element.expt_id}}{{element.file_types[0]}}
+        <a href="{{dropbox_url}}{{element.url}}" target="_blank">
+        {{element.url}}
+        </a>
       </div>
 
     </mat-cell>
@@ -20,9 +21,9 @@
   <!-- Timepoint Column -->
   <ng-container matColumnDef="timepoint">
     <mat-header-cell *matHeaderCellDef mat-sort-header>timepoint</mat-header-cell>
-    <mat-cell *matCellDef="let element">
+    <mat-cell *matCellDef="let element" [ngClass] = "[element.status.key]">
       <mat-chip class="timepoint">
-        {{current_patient['timepoints'][0]}}
+        {{ element.timepoint }}
       </mat-chip>
     </mat-cell>
   </ng-container>
@@ -30,26 +31,23 @@
 
   <!-- File Status Column -->
   <ng-container matColumnDef="status">
-    <!-- TODO: link to file -->
     <!-- TODO: CSS style -->
     <mat-header-cell *matHeaderCellDef mat-sort-header>status</mat-header-cell>
-    <mat-cell *matCellDef="let element" class='complete'> complete </mat-cell>
+    <mat-cell *matCellDef="let element" [ngClass] = "['status', element.status.key]"> {{ element.status.value }} </mat-cell>
   </ng-container>
 
   <!-- File Upload Date Column -->
   <ng-container matColumnDef="date">
-    <!-- TODO: link to file -->
     <!-- TODO: format date -->
     <mat-header-cell *matHeaderCellDef mat-sort-header>date uploaded</mat-header-cell>
-    <mat-cell *matCellDef="let element">2018-02-02 </mat-cell>
+    <mat-cell *matCellDef="let element" [ngClass] = "[element.status.key]">{{element.date_upload}}</mat-cell>
   </ng-container>
 
   <!-- Upload New Data Column -->
   <ng-container matColumnDef="upload">
-    <!-- TODO: link to file -->
-    <!-- TODO: CSS style -->
-    <mat-header-cell *matHeaderCellDef mat-sort-header>upload new file</mat-header-cell>
-    <mat-cell *matCellDef="let element">
+        <!-- TODO: CSS style -->
+    <mat-header-cell *matHeaderCellDef>upload new file</mat-header-cell>
+    <mat-cell *matCellDef="let element" [ngClass] = "['upload', element.status.key]">
       <mat-icon>backup</mat-icon>
     </mat-cell>
   </ng-container>

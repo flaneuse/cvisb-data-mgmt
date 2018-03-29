@@ -1,10 +1,13 @@
 <h2>Patient Data Files</h2>
 
+
 <div *ngFor="let category of categories">
-  <h3>
+  <ng-container *ngIf='files[category]'>
+    <h3>
     {{ category }}
   </h3>
 
-  <app-file-table [current_patient]='current_patient' [current_cat] = 'category'></app-file-table>
+    <app-file-table [files]='files[category]'></app-file-table>
+  </ng-container>
 
 </div>

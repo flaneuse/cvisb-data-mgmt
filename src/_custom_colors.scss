@@ -152,3 +152,12 @@ h5 {
   stroke: $grey-400;
   stroke-width: 1px;
 }
+
+// tables (font-size)
+/deep/ .mat-cell {
+  font-size: 1em;
+}
+
+/deep/ button.mat-sort-header-button {
+  font-size: 1.25em;
+}

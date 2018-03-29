@@ -11,14 +11,19 @@ export class PatientComponent implements OnInit {
 
   // private patients: Array<any> = [];
   currentPatient: Object;
+  currentTimept: number;
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
   }
 
   onPatientEmit(current_patient) {
     this.currentPatient = current_patient;
+  }
+
+  onTimepointEmit(current_tp) {
+    this.currentTimept = current_tp;
   }
 
   ngOnChanges() {

@@ -1,19 +1,64 @@
 @import '~_custom_colors.scss';
 
+// table formatting
 .mat-row {
   border-bottom: none;
 }
 
-.file-path {
-  color: $grey-400;
-  font-size: 0.75em;
+// resize widths
+.mat-column-file {
+  flex: 0 0 30%;
+}
+
+.mat-column-timepoint, .mat-column-upload {
+  flex: 0 0 5%;
+}
+
+// statuses
+.disabled {
+  opacity: 0.6;
+}
+
+.abandoned  {
+  opacity: 0.35;
+}
+
+.abandoned {
+  text-decoration: line-through;
+}
+
+.status.done {
+  color: $complete-color;
+}
+
+// hyperlinks
+a {
+  color: $default-color;
+  text-decoration: none;
 }
 
 
+.file-path a{
+  color: $grey-400;
+  font-size: 0.75em;
+  text-decoration: underline;
+}
+
+// upload
 mat-icon {
   color: $grey-300;
 }
 
+.upload.disabled, .upload.done  {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.abandoned {
+  text-decoration: line-through;
+}
+
+// timepoints
 .timepoint::before {
   content: "T";
 }
