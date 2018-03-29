@@ -56,7 +56,7 @@ export class SampleLocComponent implements OnInit {
   }
 
   getSamples() {
-    this.sample_types = this.sampleSvc.createFakeSamples(this.current_patient.patient_id);
+    this.sample_types = this.sampleSvc.createFakeSamples(this.current_patient);
     // TODO: move to service
     if (this.current_timepoint) {
       this.sample_types = this.sample_types.filter(d => d.timepoint === this.current_timepoint);
