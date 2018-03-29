@@ -14,7 +14,7 @@ export class GetExptListService {
 
   constructor() { }
 
-// EVENT LISTENER: change experiment type
+  // EVENT LISTENER: change experiment type
   // Observable string sources
   private exptAnnouncedSource = new Subject<Array<Experiment>>();
 
@@ -132,12 +132,12 @@ export class GetExptListService {
         }),
         new ExptParams({
           "controlType":
-          "dropdown", "key": "seq_tech", "label": "Sequencing Technology",
+            "dropdown", "key": "seq_tech", "label": "Sequencing Technology",
           "options": [{ "key": "illumina", "value": "Illumina" }]
         }),
         new ExptParams({
           "controlType":
-          "dropdown", "key": "seq_platform", "label": "Sequencing Platform",
+            "dropdown", "key": "seq_platform", "label": "Sequencing Platform",
           "options": [{ "key": "miseq", "value": "MiSeq" }]
         }),
         new ExptParams({
@@ -180,12 +180,12 @@ export class GetExptListService {
         }),
         new ExptParams({
           "controlType":
-          "dropdown", "key": "seq_tech", "label": "Sequencing Technology",
+            "dropdown", "key": "seq_tech", "label": "Sequencing Technology",
           "options": [{ "key": "illumina", "value": "Illumina" }]
         }),
         new ExptParams({
           "controlType":
-          "dropdown", "key": "seq_platform", "label": "Sequencing Platform",
+            "dropdown", "key": "seq_platform", "label": "Sequencing Platform",
           "options": [{ "key": "miseq", "value": "MiSeq" }]
         }),
         new ExptParams({
@@ -227,12 +227,12 @@ export class GetExptListService {
         }),
         new ExptParams({
           "controlType":
-          "dropdown", "key": "seq_tech", "label": "Sequencing Technology",
+            "dropdown", "key": "seq_tech", "label": "Sequencing Technology",
           "options": [{ "key": "illumina", "value": "Illumina" }]
         }),
         new ExptParams({
           "controlType":
-          "dropdown", "key": "seq_platform", "label": "Sequencing Platform",
+            "dropdown", "key": "seq_platform", "label": "Sequencing Platform",
           "options": [{ "key": "miseq", "value": "MiSeq" }]
         }),
         new ExptParams({
@@ -270,12 +270,12 @@ export class GetExptListService {
         }),
         new ExptParams({
           "controlType":
-          "dropdown", "key": "seq_tech", "label": "Sequencing Technology",
+            "dropdown", "key": "seq_tech", "label": "Sequencing Technology",
           "options": [{ "key": "illumina", "value": "Illumina" }]
         }),
         new ExptParams({
           "controlType":
-          "dropdown", "key": "seq_platform", "label": "Sequencing Platform",
+            "dropdown", "key": "seq_platform", "label": "Sequencing Platform",
           "options": [{ "key": "miseq", "value": "MiSeq" }]
         }),
         new ExptParams({
