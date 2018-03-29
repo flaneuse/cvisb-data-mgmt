@@ -13,7 +13,7 @@ import { FormControl } from "@angular/forms";
 
 export class FileTableComponent implements OnInit {
   @Input() private files: Array<any>;
-  dropbox_url: string = "https://www.dropbox.com/home/";
+  dropbox_url: string = "https://www.dropbox.com/home";
 
 
   displayedColumns = ['file', 'timepoint', 'status', 'date', 'upload'];

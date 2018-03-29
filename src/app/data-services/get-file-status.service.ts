@@ -66,10 +66,8 @@ export class GetFileStatusService {
         } // exit loop over timepoints
       } // exit loop over different expts
 
-console.log(tmp_files)
       // TODO: be more clever so only loop over valid timpoints rather than filtering?
       if (current_timepoint !== null) {
-      console.log(tmp_files)
         tmp_files = tmp_files.filter(d => d.timepoint === current_timepoint);
       }
 
@@ -87,8 +85,8 @@ console.log(tmp_files)
   getFakeStatus(rand_num: number) {
     let statuses = [
       { 'key': 'done', 'value': 'complete' },
-      { 'key': 'disabled', 'value': 'not uploaded' },
       { 'key': 'done', 'value': 'complete' },
+      { 'key': 'disabled', 'value': 'not uploaded' },
       { 'key': 'disabled', 'value': 'not uploaded' },
       { 'key': 'abandoned', 'value': 'experiment abandoned' }
     ];
@@ -103,7 +101,7 @@ console.log(tmp_files)
       return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
     }
 
-    if (rand_num <= 1 / 5) {
+    if (rand_num <= 2 / 5) {
       return randomDate(new Date('January 1, 2018 00:00:00'), new Date('December 31, 2018 00:00:00'));
 
     } else {
