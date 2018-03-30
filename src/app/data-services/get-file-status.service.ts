@@ -14,7 +14,22 @@ export class GetFileStatusService {
   private files: any = {};
 
 
+// modified from http://benjaminzhang.com/blog/intersection-of-two-arrays-in-typescript/
+  intersection(array1: any[], array2: any[]): any[] {
+    let result: any[] = [];
+
+    for (let el of array2) {
+      if (array1.includes(el)) {
+        result.push(el);
+      }
+    }
+
+    return result;
+  }
+
   getFakeFiles(current_patient: Object, current_timepoint: number) {
+
+
     // reset to clear any previous obj.
     this.files = {};
 
@@ -25,7 +40,6 @@ export class GetFileStatusService {
     // console.log(this.expt_list)
 
     // Filter out just the current_timepoint, if specified
-    // BUG
     if (current_timepoint) {
       this.expt_list = this.expt_list.filter(d => d.timepoints.includes(current_timepoint));
     } else {
@@ -45,14 +59,21 @@ export class GetFileStatusService {
       for (var i = 0; i < expts.length; i++) {
         let expt = expts[i];
 
-        for (var j = 0; j < expt.timepoints.length; j++) {
+        // calculate intersection between the timepoints a patient has available to them, and what the expt calls for
+        console.log('intersection')
+        console.log(current_patient.timepoints)
+        console.log(expt.timepoints)
+        let current_timepts = this.intersection(current_patient.timepoints, expt.timepoints);
+        console.log(current_timepts)
+
+        for (var j = 0; j < current_timepts.length; j++) {
 
           for (var k = 0; k < expt.file_types.length; k++) {
             let rand_num = Math.random();
 
             tmp_files.push(new FileStatus({
               patient_id: current_patient.patient_id,
-              timepoint: expt.timepoints[j],
+              timepoint: current_timepts[j],
               sample_id: 'sample.id',
               expt_id: expt.expt_type + '.id',
               ext: expt.file_types[k],
