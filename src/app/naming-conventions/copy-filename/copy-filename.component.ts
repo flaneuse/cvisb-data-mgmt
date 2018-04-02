@@ -28,10 +28,18 @@ export class CopyFilenameComponent implements OnInit {
     }
 
     ngOnInit() {
+
     }
 
     ngOnChanges(){
-      this.current_file = new Filename(this.current_patient, this.current_timept, 'b', 'c');
+      console.log(this.current_patient)
+      this.current_file = new Filename({
+        patient_id: this.current_patient,
+        timepoint: this.current_timept,
+        sample_id: 'DNA1',
+        expt_id: 'HLA1-L1.R2',
+        date: new Date('2016-12-29')
+      })
     }
 
 

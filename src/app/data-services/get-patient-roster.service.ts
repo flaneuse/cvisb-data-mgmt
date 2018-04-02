@@ -65,7 +65,7 @@ createFakePatients(num_patients: number = 20) {
   for (var i = 0; i < num_patients; i++) {
     this.patients.push(this.fakePatient(i));
   }
-  console.log(this.patients)
+  // console.log(this.patients)
   return this.patients;
 }
 
