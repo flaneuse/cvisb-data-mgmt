@@ -16,7 +16,7 @@ export class GetExptListService {
 
   // EVENT LISTENER: change experiment type
   // Observable string sources
-  private exptAnnouncedSource = new Subject<Array<Experiment>>();
+  private exptAnnouncedSource = new Subject<Array<ExptParams<any>>>();
 
   // Observable string streams
   exptAnnounced$ = this.exptAnnouncedSource.asObservable();
@@ -35,6 +35,7 @@ export class GetExptListService {
       expt_label: 'patient metadata', expt_description: 'patient metadata',
       expt_cat: 'metadata', cat_order: 0, file_types: ['.csv'],
       params: [],
+      sample_type: '',
       timepoints: [0],
       dropbox: '/CViSB/Data//'
     };
@@ -44,6 +45,7 @@ export class GetExptListService {
       expt_label: 'Piccolo metabolites', expt_description: 'Piccolo metabolism assays',
       expt_cat: 'clinical_data', cat_order: 1, file_types: ['.csv'],
       params: [],
+      sample_type: 'plasma',
       timepoints: this.alltimepts,
       dropbox: '/CViSB/Data//'
     };
@@ -53,6 +55,7 @@ export class GetExptListService {
       expt_label: 'Kenzen sensors', expt_description: 'Kenzen sensor data: ECG, core body temperature, movement',
       expt_cat: 'clinical_data', cat_order: 1, file_types: ['.csv'],
       params: [],
+      sample_type: '',
       timepoints: this.alltimepts,
       dropbox: '/CViSB/Data/Kenzen/'
     };
@@ -62,6 +65,7 @@ export class GetExptListService {
       expt_label: 'ELISA', expt_description: 'ELISA',
       expt_cat: 'clinical_data', cat_order: 1, file_types: ['.csv'],
       params: [],
+      sample_type: 'plasma',
       timepoints: this.alltimepts,
       dropbox: '/CViSB/Data/ELISA/'
     };
@@ -71,6 +75,7 @@ export class GetExptListService {
       expt_label: 'qPCR viral load', expt_description: 'qPCR viral load',
       expt_cat: 'clinical_data', cat_order: 1, file_types: ['.csv'],
       params: [],
+      sample_type: 'RNA',
       timepoints: this.alltimepts,
       dropbox: '/CViSB/Data//'
     };
@@ -80,6 +85,7 @@ export class GetExptListService {
       lab: 'Andersen', expt_type: 'HLA',
       expt_label: 'HLA sequencing', expt_description: 'HLA typing',
       expt_cat: 'sequencing', cat_order: 3, file_types: ['.csv', '.bam'],
+      sample_type: 'DNA',
       params: [
         new ExptParams({ "controlType": "textbox", "key": "library", "label": "library prep version" }),
         new ExptParams({
@@ -110,6 +116,7 @@ export class GetExptListService {
       lab: 'Andersen', expt_type: 'viralseq',
       expt_label: 'Amplicon virus sequencing', expt_description: 'Targeted virus sequencing will be performed for each individual at each timepoint',
       expt_cat: 'sequencing', cat_order: 3, file_types: ['.bam', '.fasta', '.VCF', '_analysis.fasta', '_analysis.phylip', '_analysis.xml', '_analysis.log'],
+      sample_type: 'RNA',
       params: [
 
         new ExptParams({
@@ -159,6 +166,7 @@ export class GetExptListService {
       lab: 'Andersen', expt_type: 'metagenome',
       expt_label: 'Metagenomic sequencing', expt_description: 'Untargeted metagenomic RNA sequencing for each individual on a single time point',
       expt_cat: 'sequencing', cat_order: 3, file_types: ['.bam', '.html'],
+      sample_type: 'RNA',
       params: [
 
         new ExptParams({
@@ -208,6 +216,7 @@ export class GetExptListService {
       lab: 'Briney', expt_type: 'bcr',
       expt_label: 'BCR repertoire', expt_description: 'BCR repertoire sequencingg',
       expt_cat: 'sequencing', cat_order: 3, file_types: ['.json', '.fastq'],
+      sample_type: 'PBMC',
       params: [
         new ExptParams({
           "controlType": "textbox", "key": "primer_set", "label": "primer set"
@@ -251,6 +260,7 @@ export class GetExptListService {
       lab: 'Briney', expt_type: 'tcr',
       expt_label: 'TCR repertoire', expt_description: 'TCR repertoire sequencing',
       expt_cat: 'sequencing', cat_order: 3, file_types: ['.json', '.fastq'],
+      sample_type: 'PBMC',
       params: [
         new ExptParams({
           "controlType": "textbox", "key": "primer_set", "label": "primer set"
@@ -295,6 +305,7 @@ export class GetExptListService {
       lab: 'Alter', expt_type: 'antibody',
       expt_label: 'Antibody functional data', expt_description: 'Analysis of antibody-mediated induction of innate immune effector functions',
       expt_cat: 'immune', cat_order: 4, file_types: ['.csv', '.xlsx'],
+      sample_type: 'plasma',
       params: [
         new ExptParams({
           "controlType": "dropdown", "key": "assay_type", "label": "assay type",
@@ -317,6 +328,7 @@ export class GetExptListService {
 
     this.expts = [metadata, piccolo, kenzen, elisa, qpcr, hla, viralseq, metagenome, bcr, tcr, antibody];
 
+    // console.log(this.expts)
     return this.expts;
   };
 
@@ -370,8 +382,8 @@ export class GetExptListService {
         key: 'sample_id',
         label: 'sample ID',
         options: [
-          { key: 'vDNA', value: 'viral DNA' },
-          { key: 'hDNA', value: 'host DNA' }
+          { key: 'DNA1', value: 'DNA1' },
+          { key: 'RNA1', value: 'RNA1' }
         ],
         order: 2
       })
@@ -388,8 +400,8 @@ export class GetExptListService {
       expts = expts.filter(d => d.expt_type === expt_type)
 
       let params = expts.map(d => d.params);
-      console.log('filtered params')
-      console.log(params[0]);
+      // console.log('filtered params')
+      // console.log(params[0]);
 
       if (params.length > 0) {
 

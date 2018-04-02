@@ -7,9 +7,10 @@ export class Experiment {
     public expt_cat: string,
     public cat_order: number,
     public file_types: Array<string>,
-    public params: Array<ExptParams>,
+    public params: Array<ExptParams<any>>,
     public timepoints: Array<number>,
     public dropbox: string,
+    public sample_type: string,
     public req_params?: Array<Param> // optional
   ) { }
 
