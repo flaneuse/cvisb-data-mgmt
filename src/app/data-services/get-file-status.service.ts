@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+import { Patient } from '../classes/patient';
 import { Experiment } from '../classes/experiment';
 import { Filename, FileStatus } from '../classes/filename';
 import { GetExptListService } from './get-expt-list.service';
@@ -14,7 +15,7 @@ export class GetFileStatusService {
   private files: any = {};
 
 
-// modified from http://benjaminzhang.com/blog/intersection-of-two-arrays-in-typescript/
+  // modified from http://benjaminzhang.com/blog/intersection-of-two-arrays-in-typescript/
   intersection(array1: any[], array2: any[]): any[] {
     let result: any[] = [];
 
@@ -27,7 +28,15 @@ export class GetFileStatusService {
     return result;
   }
 
-  getFakeFiles(current_patient: Object, current_timepoint: number) {
+  randInt(start: number = 1, end: number = 3) {
+    var opts = [];
+    for (var i = start; i <= end; i++) {
+      opts.push(i);
+    }
+    return opts[Math.floor(Math.random() * opts.length)]
+  }
+
+  getFakeFiles(current_patient: Patient, current_timepoint: number) {
 
 
     // reset to clear any previous obj.
@@ -74,12 +83,13 @@ export class GetFileStatusService {
             tmp_files.push(new FileStatus({
               patient_id: current_patient.patient_id,
               timepoint: current_timepts[j],
-              sample_id: 'sample.id',
-              expt_id: expt.expt_type + '.id',
+              sample_id: expt.sample_type + this.randInt(),
+              expt_id: expt.expt_type + this.randInt(1, 100) + '-{opt}',
               ext: expt.file_types[k],
               expt_cat: expt.expt_cat,
               dropbox: expt.dropbox,
               status: this.getFakeStatus(rand_num),
+              date_expt: this.randomDate(new Date(2018, 1, 1), new Date(2018, 4, 1)),
               date_upload: this.getFakeDate(rand_num)
             })
             )
@@ -115,15 +125,16 @@ export class GetFileStatusService {
     return statuses[Math.floor(rand_num * statuses.length)];
   }
 
+  randomDate(start: Date, end: Date) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+  }
 
   getFakeDate(rand_num: number) {
 
-    function randomDate(start: Date, end: Date) {
-      return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-    }
+
 
     if (rand_num <= 2 / 5) {
-      return randomDate(new Date('January 1, 2018 00:00:00'), new Date('December 31, 2018 00:00:00'));
+      return this.randomDate(new Date('January 1, 2018 00:00:00'), new Date('December 31, 2018 00:00:00'));
 
     } else {
       return null;
