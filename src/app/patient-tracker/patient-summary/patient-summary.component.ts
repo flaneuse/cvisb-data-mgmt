@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnChanges, AfterViewInit, Input, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 
 import * as d3 from 'd3';
 
@@ -13,20 +13,32 @@ export class PatientSummaryComponent implements OnInit {
   @ViewChild('chart') private chartContainer: ElementRef;
   @Input() private num_total: number;
   @Input() private num_complete: number;
+  @Input() private label: string;
 
   private element: any;
   private margin: any = { top: 10, bottom: 10, left: 20, right: 30 };
   private width: number;
   private height: number;
+  private svg: any;
 
   constructor() { }
 
   ngOnInit() {
+    this.setupBargraph();
+  }
+
+  ngAfterViewInit() {
     this.plotBargraph();
   }
 
-  plotBargraph() {
+  ngOnChanges() {
+    // TODO: remove this hack
+    if (this.svg) {
+      this.plotBargraph();
+    }
+  }
 
+  setupBargraph() {
     // Get size and container of the outer holder
     // BUG: this.element.offsetWidth is systemmatically larger than it should be.
     this.element = this.chartContainer.nativeElement;
@@ -34,13 +46,23 @@ export class PatientSummaryComponent implements OnInit {
     this.width = this.element.offsetWidth - this.margin.left - this.margin.right;
     this.height = this.element.offsetHeight - this.margin.top - this.margin.bottom;
 
+    // TODO: fix hack
+    if (this.width < 400) {
+      this.width = 600;
+    };
+
+    // console.log(this.width)
+
     // define SVG container
-    const svg = d3.select(this.element)
+    this.svg = d3.select(this.element)
       .append('svg')
       .attr("width", this.width + this.margin.left + this.margin.right)
       .attr("height", this.height + this.margin.top + this.margin.bottom);
 
-    var g = svg.append('g')
+  }
+
+  plotBargraph() {
+    var g = this.svg.append('g')
       .attr('transform', "translate(" + this.margin.left + ", " + this.margin.top + ")");
 
 
