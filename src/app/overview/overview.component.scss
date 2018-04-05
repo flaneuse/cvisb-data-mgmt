@@ -1,0 +1,32 @@
+@import '~_custom_colors.scss';
+
+a {
+  text-decoration: none;
+  color: $default-color;
+}
+
+mat-card {
+  background: lighten($tab-color, 10%);
+  width: 300px;
+  height: 300px;
+  margin: 10px 5px 10px 10px;
+}
+
+mat-card-content {
+  font-size: 1.15em;
+}
+
+.half {
+  height:100px;
+    font-size: 0.8em;
+    margin-bottom: 50px;
+}
+
+.sep {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.summary-text {
+
+}

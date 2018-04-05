@@ -39,6 +39,7 @@ import { ExptDetailsComponent } from './naming-conventions/expt-params/expt-deta
 import { FileTableComponent } from './patient/patient-files/file-table/file-table.component';
 import { GridGrpComponent } from './expt-tracker/grid-grp/grid-grp.component';
 import { SamplesComponent } from './samples/samples.component';
+import { OverviewComponent } from './overview/overview.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { SamplesComponent } from './samples/samples.component';
     ExptDetailsComponent,
     FileTableComponent,
     GridGrpComponent,
-    SamplesComponent
+    SamplesComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,

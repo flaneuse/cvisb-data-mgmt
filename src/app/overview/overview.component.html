@@ -1,0 +1,91 @@
+<div fxLayout="row" fxFlex fxLayoutGap="20px">
+
+  <div class="half">
+    <!-- <div fxFlex="calc(50% - 20px)"> -->
+    <!-- SUMMARY BAR GRAPH -->
+    <a routerLink="/patient-tracker">
+      <app-patient-summary [num_total]="num_samples" [num_complete]="completed_samples" [label]="'completely analyzed samples'"></app-patient-summary>
+    </a>
+
+    <mat-divider class = "sep"></mat-divider>
+
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="10px" fxLayoutAlign="left">
+      <a routerLink="/samples">
+        <mat-card fxFlex="calc(50% - 20px)" class="feature-card">
+          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">Sample browser</mat-card-title>
+          <mat-card-subtitle>Track samples by patient</mat-card-subtitle>
+          <mat-card-content>
+            <ul>
+              <li>
+                Find sample storage locations
+              </li>
+              <li>
+                View sample metadata, including sample ids and dates
+              </li>
+              <li>
+                Enter sample metadata
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </a>
+
+      <a routerLink="/sample-naming">
+        <mat-card fxFlex="calc(50% - 20px)" class="feature-card">
+          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+            Sample file naming standards</mat-card-title>
+          <mat-card-subtitle>View experiment parameters for each patient</mat-card-subtitle>
+          <mat-card-content>
+            <ul>
+              <li>
+                Generate consistent file naming schemes for each experiment
+              </li>
+              <li>
+                View experiment metadata
+              </li>
+              <li>
+                Enter experiment metadata
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </a>
+
+      <a routerLink="/patient">
+        <mat-card fxFlex="calc(50% - 20px)" class="feature-card">
+          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">Patient File Browser</mat-card-title>
+          <mat-card-subtitle>View files for each patient</mat-card-subtitle>
+          <mat-card-content>
+            <ul>
+              <li>
+                View file storage locations
+              </li>
+              <li>
+                View file completion status and date
+              </li>
+
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </a>
+
+
+    </div>
+  </div>
+
+  <mat-divider [vertical]="true"></mat-divider>
+  <div>
+
+    <!-- <div fxFlex="calc(50% - 20px)"> -->
+    <div class="half">
+      <a routerLink="/patient-tracker">
+        <app-patient-summary [num_total]="num_expts" [num_complete]="completed_expts" [label]="'completed experiments'"></app-patient-summary>
+      </a>
+    </div>
+    <!-- SUMMARY EXPERIMENTS -->
+    <a routerLink="/expt-tracker">
+      <app-grid-grp [data]="statuses"></app-grid-grp>
+    </a>
+  </div>
+
+</div>

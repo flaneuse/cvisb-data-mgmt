@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 
+import { OverviewComponent } from './overview/overview.component';
 import { PatientComponent } from './patient/patient.component';
 import { SamplesComponent } from './samples/samples.component';
 import { NamingConventionsComponent } from './naming-conventions/naming-conventions.component';
@@ -10,6 +11,7 @@ import { ExptTrackerComponent } from './expt-tracker/expt-tracker.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
+  { path: 'overview', component: OverviewComponent, pathMatch: 'full' },
   { path: 'patient', component: PatientComponent, pathMatch: 'full' },
   { path: 'samples', component: SamplesComponent, pathMatch: 'full' },
   { path: 'sample-naming', component: NamingConventionsComponent, pathMatch: 'full' },
@@ -20,9 +22,10 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [    RouterModule.forRoot(appRoutes,
-        { enableTracing: false } // <-- true = debugging purposes
-      )],
-  exports: [ RouterModule]
+  imports: [
+    RouterModule.forRoot(appRoutes,
+      { enableTracing: false } // <-- true = debugging purposes
+    )],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }
