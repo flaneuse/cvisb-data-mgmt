@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class NamingConventionsComponent implements OnInit {
   currentPatient: Object = [];
   currentTimept: number;
+  formData: any;
 
   constructor() { }
 
@@ -21,6 +22,12 @@ export class NamingConventionsComponent implements OnInit {
 
   onTimeptEmit(current_timept) {
     this.currentTimept = current_timept;
+  }
+
+// TODO: convert ot service
+  onParamsEmitParent(current_params) {
+    // console.log(current_params)
+    this.formData = current_params;
   }
 
 }

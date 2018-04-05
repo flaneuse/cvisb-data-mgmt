@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -15,7 +15,8 @@ export class ExptParamsComponent implements OnInit {
 
   private expt_list: Array<Experiment>;
   private current_expt: string = 'HLA'; //['antibody', 'tcr', 'HLA']
-  private formData: any;
+  // private formData: any;
+  @Output() formData = new EventEmitter<any>();
 
   reqParams: any[];
   exptParams: any[];
@@ -46,8 +47,9 @@ export class ExptParamsComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
+// TODO: convert to service
   onParamsEmit(form) {
-    this.formData = form;
+    this.formData.emit(form);
   }
 
 }

@@ -1,19 +1,19 @@
-<ng-container *ngIf="current_patient.length > 0">
-<h2>File names</h2>
+<ng-container *ngIf="params">
+  <h2>File names</h2>
 
-<table class="file-list" *ngIf='current_file'>
-  <tr class="file" *ngFor="let ext of file_ext">
-    <td class='file-name'>
-      {{current_file.concat()}}{{ext}}
-    </td>
+  <table class="file-list" *ngIf='current_file'>
+    <tr class="file" *ngFor="let ext of file_ext">
+      <td class='file-name'>
+        {{current_file.concat()}}{{ext}}
+      </td>
 
-    <td class='copy-icon' (click) = "copyText($event)">
-      <mat-icon [id]="ext">content_copy</mat-icon>
-    </td>
+      <td class='copy-icon' (click)="copyText($event)">
+        <mat-icon [id]="ext">content_copy</mat-icon>
+      </td>
 
-    <td class='upload-link'>
-      <button mat-raised-button>upload {{ext}} file</button>
-    </td>
-  </tr>
-</table>
+      <td class='upload-link'>
+        <button mat-raised-button>upload {{ext}} file</button>
+      </td>
+    </tr>
+  </table>
 </ng-container>

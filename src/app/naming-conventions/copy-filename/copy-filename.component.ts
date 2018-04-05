@@ -14,6 +14,7 @@ import { Patient } from '../../classes/patient';
 export class CopyFilenameComponent implements OnInit {
     @Input() private current_patient: string;
     @Input() private current_timept: number;
+    @Input() private params: Object = {};
 
     private file_ext: Array<string> = ['.bam', '.csv'];
     private current_file: Filename;
@@ -32,14 +33,17 @@ export class CopyFilenameComponent implements OnInit {
     }
 
     ngOnChanges(){
-      console.log(this.current_patient)
+      // console.log(this.current_patient)
+      // TODO: service, not hard coded, sample ids, generate replicate number etc.
+
       this.current_file = new Filename({
         patient_id: this.current_patient,
         timepoint: this.current_timept,
-        sample_id: 'DNA1',
-        expt_id: 'HLA1-L1.R2',
-        date: new Date('2016-12-29')
+        sample_id: this.params.sample_id,
+        expt_id: this.params.expt_type + '1-L' + this.params.library + '.R' + this.params.replicate,
+        date_expt: this.params.expt_date
       })
+
     }
 
 
