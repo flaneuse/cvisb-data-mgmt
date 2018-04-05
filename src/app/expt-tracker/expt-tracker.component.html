@@ -1,6 +1,8 @@
 <!-- Filter by lab -->
 <app-lab-selector (changeLabs) = "filterLabs($event)"></app-lab-selector>
 
+<div *ngIf="sampleStatuses">
+{{expts}}
 
 <div class='small-multiple' *ngFor="let expt of expts">
   <h2>{{ expt }}</h2>
@@ -17,3 +19,4 @@
 
     <mat-divider></mat-divider>
   </div>
+</div>
