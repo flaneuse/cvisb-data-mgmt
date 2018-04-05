@@ -10,6 +10,10 @@ export class PatientTrackerComponent implements OnInit {
 // TODO: Create set dynamically
     labs: Set<string> = new Set(["Alter", "Briney", "Tulane", "Andersen"]);
 
+    total_samples: number;
+    total_done: number;
+    // total_expts: number;
+
   constructor() { }
 
   ngOnInit() {
@@ -21,5 +25,13 @@ export class PatientTrackerComponent implements OnInit {
     this.labs = new Set(selLabs);
     return this.labs;
   }
+
+  updateTotal(new_total) {
+    console.log("TOTAL: " + new_total)
+    this.total_samples = new_total[0];
+    this.total_done = new_total[1];
+  }
+
+
 
 }

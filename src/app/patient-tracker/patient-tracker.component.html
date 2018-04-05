@@ -10,7 +10,8 @@
 
 
 <!-- SUMMARY BAR GRAPH -->
-<app-patient-summary [num_total]="25" [num_complete]="3"></app-patient-summary>
+<app-patient-summary *ngIf="total_samples"
+[num_total]="total_samples" [num_complete]="total_done" [label]="'completely analyzed samples'"></app-patient-summary>
 
 <!-- STOPLIGHT DOT PLOT TABLE -->
-<app-patient-stoplight [sel_labs]="labs"></app-patient-stoplight>
+<app-patient-stoplight [sel_labs]="labs" (totSamplesDone)="updateTotal($event)"></app-patient-stoplight>

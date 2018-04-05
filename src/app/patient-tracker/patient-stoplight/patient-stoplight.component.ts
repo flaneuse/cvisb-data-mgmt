@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 
 import { MatTableDataSource, MatSort, MatPaginator, MatChip } from '@angular/material';
 
@@ -21,7 +21,12 @@ export class PatientStoplightComponent implements OnInit {
   displayedColumns: Array<string> = [];
 
   fakeData: any;
+  data: any;
   dataSource: any;
+
+  // Summary values
+  @Output() totSamplesDone = new EventEmitter<number[]>();
+  // @Output() totExptsDone = new EventEmitter<number>();
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -34,7 +39,7 @@ export class PatientStoplightComponent implements OnInit {
     console.log(this.fakeData)
     this.dataSource = new MatTableDataSource(this.fakeData);
 
-// Filter out just the relevant expts.
+    // Filter out just the relevant expts.
     this.all_expts = this.exptSvc.createExptList();
     this.filterExpts();
   }
@@ -46,13 +51,32 @@ export class PatientStoplightComponent implements OnInit {
 
   ngOnChanges() {
     this.filterExpts();
+    // TODO: Remove this hack
+    if (this.data) {
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    }
   }
 
-// TODO: recalculate totals.
+
   filterExpts() {
     // filter out those selected by checkboxes; return just the names.
     this.expts = this.exptSvc.getExptNames(this.sel_labs);
+    // stash a copy of the original view
+    this.data = this.fakeData;
 
+    // recalculate totals
+    if (this.fakeData) {
+      // recalculate
+      this.data = this.sampleSvc.calcTotals(this.data, this.expts);
+      this.dataSource = new MatTableDataSource(this.data);
+
+      // Summarize values
+      // this.totExptsDone.emit(this.sampleSvc.getNumDone(this.data, 'completed'));
+      this.totSamplesDone.emit([this.data.length, this.sampleSvc.getNumDone(this.data, 'done')]);
+    }
+
+    // only show the columns selected
     this.displayedColumns = ['patient_id', 'timepoint'].concat(this.expts).concat('total_complete');
   }
 
