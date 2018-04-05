@@ -42,8 +42,8 @@ export class PatientHeaderComponent implements OnInit {
 
 
   ngOnInit() {
-    this.patients = this.roster.createFakePatients();
-    console.log(this.patients)
+    this.patients = this.roster.getPatients();
+    // console.log(this.patients)
 
     this.filteredOptions = this.patientCtrl.valueChanges
       .pipe(

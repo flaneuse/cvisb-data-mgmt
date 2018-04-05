@@ -2,12 +2,19 @@ import { Injectable } from '@angular/core';
 
 import { Patient } from '../classes/patient';
 
+import * as d3 from 'd3';
+
+import * as patient_data from "../../assets/fakepatients.json";
+
 @Injectable()
 export class GetPatientRosterService {
   private patients: Array<Patient> = [];
   private ids: Array<string> = [];
 
-  constructor() { }
+  private test: any;
+
+  constructor() {
+}
 
 
 
@@ -61,13 +68,37 @@ fakePatient(i: number) {
   return new_patient;
 }
 
-createFakePatients(num_patients: number = 20) {
+createFakePatients(num_patients: number = 40) {
   for (var i = 0; i < num_patients; i++) {
     this.patients.push(this.fakePatient(i));
   }
   // console.log(this.patients)
   return this.patients;
 }
+
+saveFakePatients() {
+  // Helper function to save the
+  let patients = this.createFakePatients();
+
+  function save_data(dwnld_data, file_type, file_name) {
+  var hiddenElement = document.createElement('a');
+  hiddenElement.href = 'data:text/tsv;charset=utf-8,' + encodeURI(dwnld_data);
+  hiddenElement.target = '_blank';
+  hiddenElement.download = file_name + '_data.' + file_type;
+  hiddenElement.click();
+  }
+
+  const dwnld_data = JSON.stringify(patients)
+
+  save_data(dwnld_data, 'json', 'random_patients')
+
+}
+
+
+getPatients() {
+  return patient_data;
+}
+
 
 getIDs(patients: Array<Patient>) {
   for (var i = 0; i < 20; i++) {
