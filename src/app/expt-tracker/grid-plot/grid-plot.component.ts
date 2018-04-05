@@ -23,13 +23,13 @@ export class GridPlotComponent implements OnInit {
   @Input() filtered_data: Array<number>;
 
   private element: any;
-  private margin: number = 25;
+  private margin: number = 10;
   private width: number;
   private height: number;
 
   private spacing: number = 1 / 4; // factor for how much white space will be between the rectangles, in rectangular units
-  private diameter: number = 18;
-  private grid_width: number = 5;
+  private diameter: number;
+  private grid_width: number;
 
   constructor() { }
 
@@ -43,9 +43,16 @@ export class GridPlotComponent implements OnInit {
     this.element = this.chartContainer.nativeElement;
     let element_dims = this.element.getBoundingClientRect();
 
+    // console.log(this.element)
+    //
+    // console.log(element_dims)
+
     // specify width of SVG to keep aspect ratio of axes at 1.
-    // let svg_width = Math.min(this.element.offsetWidth, this.element.offsetHeight);
-    let svg_width = 250;
+    let svg_width = Math.min(this.element.offsetWidth, this.element.offsetHeight);
+    // console.log(svg_width)
+    // TODO: fix hack
+    svg_width = svg_width * 0.75;
+    // let svg_width = element_dims.width;
     this.width = svg_width - this.margin * 2;
     this.height = svg_width - this.margin * 2;
 
@@ -53,6 +60,14 @@ export class GridPlotComponent implements OnInit {
     // let num_patients = this.data.length;
     let num_patients = 40;
     this.grid_width = Math.ceil(Math.sqrt(this.max_num));
+    console.log(this.grid_width)
+
+// TODO: fix hack
+    if(this.grid_width < 8) {
+      this.diameter = 18;
+    } else {
+      this.diameter = 5;
+    }
     //
     // // Determine a nice spacing between the squares
     // let white_space = (this.grid_width - 1) * this.spacing;
@@ -73,7 +88,7 @@ export class GridPlotComponent implements OnInit {
     // x will be as wide as grid_width - 1 (since base 0)
     // y will be as long as ceil(length / grid_width) - 1
     // To keep the axes symmetric, the larger of the two is taken.
-    let svg_domain = Math.max(this.grid_width, Math.ceil(num_patients / this.grid_width)) - 1;
+    let svg_domain = Math.max(this.grid_width, Math.ceil(this.max_num / this.grid_width));
 
     let x = d3.scaleLinear()
       .range([0, this.width])
