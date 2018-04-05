@@ -1,5 +1,5 @@
-import { GetPatientRosterService } from './get-patient-roster.service';
 import { Injectable } from '@angular/core';
+import { GetPatientRosterService } from './get-patient-roster.service';
 
 @Injectable()
 export class GetSampleListService {
@@ -16,7 +16,7 @@ export class GetSampleListService {
   createFakeSamples(patientObj) {
     // let patients = this.roster.createFakePatients();
     let timepoints = patientObj.timepoints;
-    console.log(timepoints)
+    // console.log(timepoints)
 
     let arr: Array<any> = [];
 
@@ -25,7 +25,7 @@ export class GetSampleListService {
       // console.log(i)
 
       let filtered = this.sample_types.filter(d => d.timepts.includes(timepoints[i]))
-      console.log(filtered)
+      // console.log(filtered)
 
       if (filtered.length > 0) {
         for(var j = 0; j < filtered.length; j++) {
@@ -36,10 +36,10 @@ export class GetSampleListService {
             tmp['sample_type'] = filtered[j].sample_type;
             tmp['sample_descrip'] = filtered[j].sample_descrip;
             tmp['sample_id'] = patientObj.patient_id + "_T" + timepoints[i] + filtered[j].sample_type;
-            console.log(tmp)
+            // console.log(tmp)
 
             arr.push(tmp)
-            console.log(arr)
+            // console.log(arr)
         }
 
       }

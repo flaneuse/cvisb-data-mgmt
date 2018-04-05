@@ -22,9 +22,9 @@ export class OverviewComponent implements OnInit {
   constructor(private sampleSvc: GetSampleStatusService) { }
 
   ngOnInit() {
-    let fakeData = this.sampleSvc.createFakePatients();
+    let fakeData = this.sampleSvc.getStatusData();
 
-    this.statuses = this.sampleSvc.getStatuses(fakeData, this.nonExptCols, false);
+    this.statuses = this.sampleSvc.getStatuses(this.nonExptCols, false);
 
     this.num_expts = this.statuses.filter(d => d > 0).length;
     this.completed_expts = this.sampleSvc.getNumDone(fakeData, 'completed');

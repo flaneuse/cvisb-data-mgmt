@@ -34,9 +34,9 @@ export class PatientStoplightComponent implements OnInit {
   constructor(private sampleSvc: GetSampleStatusService, private exptSvc: GetExptListService) { }
 
   ngOnInit() {
-    this.fakeData = this.sampleSvc.createFakePatients();
+    this.fakeData = this.sampleSvc.getStatusData();
 
-    console.log(this.fakeData)
+    // console.log(this.fakeData)
     this.dataSource = new MatTableDataSource(this.fakeData);
 
     // Filter out just the relevant expts.

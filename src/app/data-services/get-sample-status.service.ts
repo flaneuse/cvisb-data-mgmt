@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
 
+import { GetPatientRosterService } from './get-patient-roster.service';
+
+// fake status json data
+import * as status_data from "../../assets/fakestatuses.json";
+
+
 @Injectable()
 export class GetSampleStatusService {
+  private patients: any[];
 
-  constructor() { }
+  constructor(private rosterSvc: GetPatientRosterService) {
+    this.patients = this.rosterSvc.getPatients();
+  }
 
 
   sampleStatus() {
@@ -36,8 +45,6 @@ export class GetSampleStatusService {
 
   }
 
-  // BUG: fix counting of patient id, timepoints
-  // TODO: calculate total done
   calcNumFinished(patient, completed_code = 5) {
 
     // Create a copy so the patient id, timepoints can be removed
@@ -68,46 +75,9 @@ export class GetSampleStatusService {
   }
 
 
-  fakePatient(i) {
-    let patient = {
-      'patient_id': 'G' + String(i).padStart(5, '0'),
-      'timepoints': this.fakeTimepts(),
-      'patient metadata': this.sampleReview(),
-      'ELISA': this.sampleReview(),
-      'Piccolo metabolites': this.sampleReview(),
-      'Kenzen sensors': this.sampleReview(),
-      'HLA sequencing': this.sampleStatus(),
-      'Amplicon virus sequencing': this.sampleStatus(),
-      'Metagenomic sequencing': this.sampleStatus(), 'BCR repertoire': this.sampleStatus(), 'TCR repertoire': this.sampleStatus(), 'Antibody functional data': this.sampleStatus(), 'qPCR viral load': this.sampleStatus()
-
-    }
-
-    // patient['done'] = this.calcDone(patient);
-    // patient['completed'] = this.calcNumFinished(patient);
-
-    return patient;
-  }
-
-  createFakePatients(num_patients: number = 40) {
-    var arr = [];
-    var arr2 = [];
-
-    // Create fake patients
-    for (var i = 0; i < num_patients; i++) {
-      arr.push(this.fakePatient(i));
-    }
-
-    arr = this.calcTotals(arr);
-
-    arr.sort(function(a, b) {
-      return b.completed - a.completed;
-    })
 
 
-    return arr;
-
-  }
-
+  // Returns summarized value of number of completed experiments
   calcTotals(arr: any[], expts: string[] = []) {
     let filtered;
 
@@ -134,6 +104,7 @@ export class GetSampleStatusService {
     return arr;
   }
 
+  // Returns summarized number of the total of samples completely analyzed
   getNumDone(arr: any[], sum_var: string = 'done') {
     let complete_status = arr.map(d => d[sum_var]);
 
@@ -142,8 +113,15 @@ export class GetSampleStatusService {
     return total;
   }
 
-// return array of sample Status values
-  getStatuses(data: any[], nonExptCols: string[], nested: boolean = true) {
+  // return data frame containing all sample status info
+  getStatusData() {
+    return status_data;
+  }
+
+  // return array of sample status values
+  getStatuses(nonExptCols: string[], nested: boolean = true) {
+    let data = status_data;
+
     let sampleStatuses = [];
 
     let expts = Object.keys(data[0]);
@@ -154,20 +132,78 @@ export class GetSampleStatusService {
     // sort and filter the data
     for (var i = 0; i < expts.length; i++) {
       let expt = expts[i];
-      if(nested) {
+      if (nested) {
         sampleStatuses[expt] = data.map(d => d[expt]).sort();
       } else {
         sampleStatuses.push(data.map(d => d[expt]).sort())
       }
     }
 
-    if(!nested) {
+    if (!nested) {
       sampleStatuses = [].concat(...sampleStatuses);
     }
 
-    // console.log(sampleStatuses)
-
     return sampleStatuses;
+  }
+
+
+  // ONLY NEEDED FOR TESTING PURPOSES  ----------------------------------------------------------------------------------------------------
+  fakePatient(patient_id, timepoint) {
+    let patient = {
+      'patient_id': patient_id,
+      'timepoints': timepoint,
+      'patient metadata': this.sampleReview(),
+      'ELISA': this.sampleReview(),
+      'Piccolo metabolites': this.sampleReview(),
+      'Kenzen sensors': this.sampleReview(),
+      'HLA sequencing': this.sampleStatus(),
+      'Amplicon virus sequencing': this.sampleStatus(),
+      'Metagenomic sequencing': this.sampleStatus(), 'BCR repertoire': this.sampleStatus(), 'TCR repertoire': this.sampleStatus(), 'Antibody functional data': this.sampleStatus(), 'qPCR viral load': this.sampleStatus()
+
+    }
+
+    return patient;
+  }
+
+  createFakeStatuses() {
+    var arr = [];
+
+    // Create fake patients
+    for (var i = 0; i < this.patients.length; i++) {
+      let patient_id = this.patients[i].patient_id;
+      let timepoints = this.patients[i].timepoints;
+
+      for (var j = 0; j < timepoints.length; j++) {
+        arr.push(this.fakePatient(patient_id, timepoints[j]));
+      }
+    }
+
+    arr = this.calcTotals(arr);
+
+    arr.sort(function(a, b) {
+      return b.completed - a.completed;
+    })
+
+    return arr;
+  }
+
+
+  saveFakeStatuses() {
+    // Helper function to save the status data
+    let statuses = this.createFakeStatuses();
+
+    function save_data(dwnld_data, file_type, file_name) {
+      var hiddenElement = document.createElement('a');
+      hiddenElement.href = 'data:text/tsv;charset=utf-8,' + encodeURI(dwnld_data);
+      hiddenElement.target = '_blank';
+      hiddenElement.download = file_name + '_data.' + file_type;
+      hiddenElement.click();
+    }
+
+    const dwnld_data = JSON.stringify(statuses)
+
+    save_data(dwnld_data, 'json', 'random_patients')
+
   }
 
 }

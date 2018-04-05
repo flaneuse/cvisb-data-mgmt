@@ -52,10 +52,6 @@
   <ng-container matColumnDef="invalid">
   <mat-header-cell *matHeaderCellDef>
     invalid sample
-    <!-- <mat-checkbox (change)="$event ? masterToggle() : null"
-                  [checked]="selection.hasValue() && isAllSelected()"
-                  [indeterminate]="selection.hasValue() && !isAllSelected()">
-    </mat-checkbox> -->
   </mat-header-cell>
   <mat-cell *matCellDef="let row">
     <mat-checkbox (click)="$event.stopPropagation()"

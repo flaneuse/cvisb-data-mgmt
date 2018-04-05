@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Patient } from '../classes/patient';
 
-import * as d3 from 'd3';
-
+// fake patient json data
 import * as patient_data from "../../assets/fakepatients.json";
 
 @Injectable()
@@ -77,7 +76,7 @@ createFakePatients(num_patients: number = 40) {
 }
 
 saveFakePatients() {
-  // Helper function to save the
+  // Helper function to save the patient data
   let patients = this.createFakePatients();
 
   function save_data(dwnld_data, file_type, file_name) {
