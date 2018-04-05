@@ -14,7 +14,7 @@ export class ExptTrackerComponent implements OnInit {
   fakeData: any;
   sampleStatuses: Array<Array<number>> = [];
   expts: Array<string>;
-  labs: Set<string> = new Set('Alter');
+  labs: Set<string> = new Set(['Alter', 'Andersen', 'Tulane', 'Briney']); //TODO: dynamic
 
   nonExptCols: Array<string> = ['patient_id', 'timepoints', 'done', 'completed'];
 
@@ -23,20 +23,25 @@ export class ExptTrackerComponent implements OnInit {
 
   ngOnInit() {
     this.fakeData = this.sampleSvc.createFakePatients();
+    this.expts = this.exptSvc.getExptNames(this.labs);
 
-    console.log(this.fakeData)
-    this.expts = Object.keys(this.fakeData[0]);
-    this.expts = this.expts
-      .filter(d => this.nonExptCols.indexOf(d) < 0)
-    console.log(this.expts)
+    // console.log(this.fakeData)
+    // this.expts = Object.keys(this.fakeData[0]);
+    // this.expts = this.expts
+    //   .filter(d => this.nonExptCols.indexOf(d) < 0)
+    // console.log(this.expts)
 
-    this.getStatuses();
+    // this.getStatuses();
 
-    console.log(this.sampleStatuses)
+    this.sampleStatuses = this.sampleSvc.getStatuses(this.fakeData, this.nonExptCols);
+
+    // console.log(this.sampleStatuses)
+    // console.log(x)
+    // this.sampleStatuses = x;
   }
 
   ngOnChanges() {
-    this.getStatuses();
+    this.sampleStatuses = this.sampleSvc.getStatuses(this.fakeData, this.nonExptCols);
   }
 
   filterLabs(selLabs: Set<string>) {
@@ -45,12 +50,12 @@ export class ExptTrackerComponent implements OnInit {
     this.expts = this.exptSvc.getExptNames(selLabs);
   }
 
-  getStatuses() {
-    // sort and filter the data
-    for (var i = 0; i < this.expts.length; i++) {
-      let expt = this.expts[i];
-      this.sampleStatuses[expt] = this.fakeData.map(d => d[expt]).sort();
-    }
-  }
+  // getStatuses() {
+  //   // sort and filter the data
+  //   for (var i = 0; i < this.expts.length; i++) {
+  //     let expt = this.expts[i];
+  //     this.sampleStatuses[expt] = this.fakeData.map(d => d[expt]).sort();
+  //   }
+  // }
 
 }
