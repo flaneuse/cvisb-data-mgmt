@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 
 import * as d3 from 'd3';
-import { swoopyArrow } from '../../classes/swoopyArrow';
+// import { swoopyArrow } from '../../classes/swoopyArrow';
 
 @Component({
   selector: 'app-expt-summary',

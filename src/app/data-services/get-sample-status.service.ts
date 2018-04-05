@@ -104,12 +104,6 @@ export class GetSampleStatusService {
     })
 
 
-    console.log(arr)
-    // console.log(arr2)
-
-    console.log(this.getNumDone(arr, 'done'))
-    console.log(this.getNumDone(arr, 'completed'))
-
     return arr;
 
   }
