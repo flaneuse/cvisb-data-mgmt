@@ -9,3 +9,13 @@
 .mat-column-timepoint {
     flex: 0 0 5%;
 }
+
+.mat-column-invalid {
+  margin:10px;
+  overflow: visible;
+}
+
+.mat-table {
+  overflow: auto;
+  // max-height: 500px;
+}

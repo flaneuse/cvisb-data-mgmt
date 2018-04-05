@@ -35,37 +35,40 @@
   </ng-container>
 
   <!-- Storage Location Column -->
-  <!-- TODO: fix locations to save -->
-  <!-- BUG: need to assign unique vars to each location -->
-  <!-- TODO: read from file -->
   <ng-container matColumnDef="location">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>storage location</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>storage location</mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <ng-container class="storage-select">
-        <mat-form-field>
-          <mat-select [(ngModel)]="storageLoc" name="location">
-            <mat-option *ngFor="let location of storage_locs" [value]="location.loc_id">
-              {{ location['institution'] }}: {{ location['location'] }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-      </ng-container>
-
+     <mat-select placeholder="select storage location">
+        <mat-option *ngFor="let location of storage_locs" [value]="location.loc_id">
+          {{ location['institution'] }}: {{ location['location'] }}
+        </mat-option>
+      </mat-select>
     </mat-cell>
   </ng-container>
+
 
   <!-- Invalid Column -->
+
   <ng-container matColumnDef="invalid">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>invalid sample</mat-header-cell>
-    <mat-cell *matCellDef="let element">
-      <mat-checkbox [(ngModel)]="checked" aria-label="sample invalid"></mat-checkbox>
-      <!-- TODO: if checked, leave comment -->
-      <mat-form-field class="example-full-width">
-        <textarea matInput matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" placeholder="Reason sample is invalid"></textarea>
-      </mat-form-field>
-    </mat-cell>
-  </ng-container>
+  <mat-header-cell *matHeaderCellDef>
+    invalid sample
+    <!-- <mat-checkbox (change)="$event ? masterToggle() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+    </mat-checkbox> -->
+  </mat-header-cell>
+  <mat-cell *matCellDef="let row">
+    <mat-checkbox (click)="$event.stopPropagation()"
+                  (change)="$event ? selection.toggle(row) : null"
+                  [checked]="selection.isSelected(row)">
+    </mat-checkbox>
+
+    <mat-form-field class="example-full-width" *ngIf="selection.isSelected(row)">
+      <textarea matInput matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" placeholder="Reason sample is invalid"></textarea>
+    </mat-form-field>
+  </mat-cell>
+</ng-container>
+
 
   <!-- GENERATE TABLE -->
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -3,6 +3,7 @@ import { Component, OnInit, AfterViewInit, OnChanges, Input, ViewChild } from '@
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { FormControl } from "@angular/forms";
 
+import {SelectionModel} from '@angular/cdk/collections';
 import { GetSampleListService } from '../../data-services/get-sample-list.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class SampleLocComponent implements OnInit {
   storageCtrl: FormControl;
   storageLoc: string;
   test: any;
+  selection = new SelectionModel<Element>(true, []);
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
