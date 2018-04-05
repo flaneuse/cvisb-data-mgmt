@@ -1,14 +1,17 @@
-<h1>
-Center for Viral Systems Biology Data Viewer
-</h1>
+<header fxLayout="row" fxFlex>
+  <a href="https://cvisb.org/" target="_blank">
+  <img alt="Center for Viral Systems Biology" class="logo" src="/assets/img/cvisb_icon_600px.png"/>
+</a>
+
+  <h1>
+  Ebola and Lassa Data Viewer
+  </h1>
+</header>
+
 
 <!-- NAV BAR FOR DIFFERENT VIEWS -->
 <nav mat-tab-nav-bar>
-  <a mat-tab-link
-     *ngFor="let link of navLinks"
-     [routerLink]="link.path"
-     routerLinkActive #rla="routerLinkActive"
-     [active]="rla.isActive">
+  <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
     {{link.label}}
   </a>
 </nav>
