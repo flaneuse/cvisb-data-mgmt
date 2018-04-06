@@ -70,16 +70,6 @@ export class GetExptListService {
       dropbox: '/CViSB/Data/ELISA/'
     };
 
-    var qpcr: Experiment = {
-      lab: 'Andersen', expt_type: 'qpcr',
-      expt_label: 'qPCR viral load', expt_description: 'qPCR viral load',
-      expt_cat: 'clinical_data', cat_order: 1, file_types: ['.csv'],
-      params: [],
-      sample_type: 'RNA',
-      timepoints: this.alltimepts,
-      dropbox: '/CViSB/Data//'
-    };
-
 
     var hla: Experiment = {
       lab: 'Andersen', expt_type: 'HLA',
@@ -110,6 +100,16 @@ export class GetExptListService {
       ],
       timepoints: [1],
       dropbox: '/CViSB/Data/Sequencing - HLA/'
+    };
+
+    var qpcr: Experiment = {
+      lab: 'Andersen', expt_type: 'qpcr',
+      expt_label: 'qPCR viral load', expt_description: 'qPCR viral load',
+      expt_cat: 'clinical_data', cat_order: 3, file_types: ['.csv'],
+      params: [],
+      sample_type: 'RNA',
+      timepoints: this.alltimepts,
+      dropbox: '/CViSB/Data//'
     };
 
     var viralseq: Experiment = {
@@ -326,7 +326,7 @@ export class GetExptListService {
       dropbox: '/CViSB/Data/Systems Serology/'
     };
 
-    this.expts = [metadata, piccolo, kenzen, elisa, qpcr, hla, viralseq, metagenome, bcr, tcr, antibody];
+    this.expts = [metadata, piccolo, kenzen, elisa, hla, viralseq, metagenome, qpcr, bcr, tcr, antibody];
 
     // console.log(this.expts)
     return this.expts;
@@ -417,10 +417,13 @@ export class GetExptListService {
   getExptNames(sel_labs: Set<string>) {
     let all_expts = this.createExptList();
 
+    console.log(all_expts)
+
     let expts = all_expts
       .filter(d => sel_labs.has(d.lab))
       .map(d => d.expt_label);
 
+console.log(expts)
     return expts;
   }
 
