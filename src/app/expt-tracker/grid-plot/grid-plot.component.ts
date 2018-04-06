@@ -30,6 +30,7 @@ export class GridPlotComponent implements OnInit {
   private spacing: number = 1 / 4; // factor for how much white space will be between the rectangles, in rectangular units
   private diameter: number;
   private grid_width: number;
+  private rects: any;
 
   constructor() { }
 
@@ -60,11 +61,11 @@ export class GridPlotComponent implements OnInit {
     // let num_patients = this.data.length;
     let num_patients = 40;
     this.grid_width = Math.ceil(Math.sqrt(this.max_num));
-    console.log(this.grid_width)
+    // console.log(this.grid_width)
 
-// TODO: fix hack
-    if(this.grid_width < 8) {
-      this.diameter = 18;
+    // TODO: fix hack
+    if (this.grid_width < 10) {
+      this.diameter = 15;
     } else {
       this.diameter = 5;
     }
@@ -98,18 +99,46 @@ export class GridPlotComponent implements OnInit {
       .range([0, this.height])
       .domain([0, svg_domain]);
 
+    this.rects = d3.selectAll('text');
+
     // Grid plot
     g.selectAll('.grid')
       .data(this.filtered_data)
       .enter().append('rect')
       .attr('class', (d, i) => 's' + d)
+      .attr('id', (d, i) => "expt" + i)
       .classed('grid', true)
       .attr('x', (d, i) => x(i % this.grid_width))
       .attr('y', (d, i) => y(Math.floor(i / this.grid_width)))
       .attr('width', this.diameter)
-      .attr('height', this.diameter);
+      .attr('height', this.diameter)
+      .attr('matTooltip', 'patient G0005')
+      .attr("cdk-describedby-host", "")
+      .attr("aria-describedby", "cdk-describedby-message-0")
+      .attr('ng-reflect-message', 'patient G0005')
+      .on('mouseover', (d, i) => this.addTooltip(d, i))
+      .on('mouseout', (d, i) => this.removeTooltip(d, i))
 
+    // TODO: more sophisticated tooltips
+    // TODO: pass actual patient names + info :)
+    g.selectAll("text")
+      .data(this.filtered_data)
+      .enter().append('text')
+      .attr('class', 'tooltip')
+      .attr('id', (d, i) => "expt" + i)
+      .attr('x', (d, i) => x(i % this.grid_width))
+      .attr('dy', 30)
+      .attr('y', (d, i) => y(Math.floor(i / this.grid_width)))
+      .text('patient G00003')
+      .attr('display', 'none');
 
+  }
 
+  addTooltip(d, i) {
+    d3.select(this.element).selectAll('.tooltip#expt' + i).attr('display', 'block')
+  }
+
+  removeTooltip(d, i) {
+    d3.select(this.element).selectAll('.tooltip#expt' + i).attr('display', 'none')
   }
 }

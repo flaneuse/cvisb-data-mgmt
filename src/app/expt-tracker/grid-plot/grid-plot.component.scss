@@ -50,3 +50,9 @@ h4 {
 .stuck.s5 {
   background-color: rgba($complete-color, 0.3);
 }
+
+// tooltips
+.tooltip {
+  alignment-baseline: hanging;
+  text-anchor: middle;
+}

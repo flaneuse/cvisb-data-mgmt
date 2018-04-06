@@ -1,5 +1,5 @@
 <h3>What stage are experiments stuck in?</h3>
-<div fxLayout="row wrap" fxFlex fxLayoutGap="20px">
+<div fxLayout="row wrap" fxFlex fxLayoutGap="20px" class="grid-grp">
   <ng-container *ngFor="let code of codes">
     <div fxFlex="calc(33% - 20px)" *ngIf="filteredData[code.code].length > 0">
       <app-grid-plot [filtered_data]="filteredData[code.code]" [max_num]="maxNum" [current_code]="code.code" [status]="code.status" [code]="code.id"></app-grid-plot>
