@@ -78,13 +78,13 @@
 
     <!-- <div fxFlex="calc(50% - 20px)"> -->
     <div class="half">
-      <a routerLink="/patient-tracker">
+      <a routerLink="/expt-tracker">
         <app-patient-summary [num_total]="num_expts" [num_complete]="completed_expts" [label]="'completed experiments'"></app-patient-summary>
       </a>
     </div>
     <!-- SUMMARY EXPERIMENTS -->
     <a routerLink="/expt-tracker">
-      <app-grid-grp [data]="statuses"></app-grid-grp>
+      <app-grid-grp [data]="statuses" class="grid-plot"></app-grid-grp>
     </a>
   </div>
 
