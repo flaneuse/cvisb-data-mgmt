@@ -63,7 +63,29 @@ export class GetFileStatusService {
     for (var h = 0; h < expt_cats.length; h++) {
       let expt_cat = expt_cats[h];
       let expts = this.expt_list.filter(d => d.expt_cat.includes(expt_cat));
-      let tmp_files: Array<FileStatus> = [];
+      if (expt_cat === 'sequencing') {
+        // BUG: remove from the real version. Added in now for testing purposes.
+
+        let expt = expts[0];
+
+        let tmp_files: Array<FileStatus> = [];
+
+        tmp_files.push(new FileStatus({
+          patient_id: current_patient.patient_id,
+          timepoint: 1,
+          sample_id: 'DNA1',
+          expt_id: 'HLA1-L1.R2',
+          ext: '.csv',
+          expt_cat: expt.expt_cat,
+          dropbox: expt.dropbox,
+          status: { 'key': 'done', 'value': 'complete' },
+          date_expt: new Date(2018, 3, 6),
+          date_upload: new Date('2018-04-06T11:24:00')
+        }));
+
+      } else {
+        let tmp_files: Array<FileStatus> = [];
+      }
 
       for (var i = 0; i < expts.length; i++) {
         let expt = expts[i];
