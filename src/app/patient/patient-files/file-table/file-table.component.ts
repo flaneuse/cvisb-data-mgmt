@@ -16,7 +16,7 @@ export class FileTableComponent implements OnInit {
   dropbox_url: string = "https://www.dropbox.com/home";
 
 
-  displayedColumns = ['file', 'timepoint', 'status', 'date', 'upload'];
+  displayedColumns = ['filename', 'timepoint', 'status', 'date_upload', 'upload'];
   storageCtrl: FormControl;
   dataSource: any;
 
@@ -29,6 +29,7 @@ export class FileTableComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.files);
+    // console.log(this.files)
   }
 
   ngAfterViewInit() {

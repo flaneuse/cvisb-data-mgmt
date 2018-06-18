@@ -3,7 +3,7 @@ import { Component, OnInit, AfterViewInit, OnChanges, Input, ViewChild } from '@
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { FormControl } from "@angular/forms";
 
-import {SelectionModel} from '@angular/cdk/collections';
+import { SelectionModel } from '@angular/cdk/collections';
 import { GetSampleListService } from '../../data-services/get-sample-list.service';
 
 @Component({
@@ -33,7 +33,7 @@ export class SampleLocComponent implements OnInit {
 
   private sample_types: Array<Object> = [];
 
-  displayedColumns = ['sample_id', 'timepoint', 'description', 'date', 'location', 'invalid'];
+  displayedColumns = ['sample_id', 'timepoint', 'sample_descrip', 'date', 'location', 'invalid'];
   dataSource;
 
 
@@ -43,6 +43,8 @@ export class SampleLocComponent implements OnInit {
 
   ngOnInit() {
     this.getSamples();
+
+    // console.log(this.dataSource)
 
   }
 
@@ -61,7 +63,7 @@ export class SampleLocComponent implements OnInit {
     this.sample_types = this.sampleSvc.createFakeSamples(this.current_patient);
     // TODO: move to service
     if (this.current_timepoint) {
-      this.sample_types = this.sample_types.filter(d => d.timepoint === this.current_timepoint);
+      this.sample_types = this.sample_types.filter((d: any) => d.timepoint === this.current_timepoint);
     }
     console.log(this.sample_types)
 

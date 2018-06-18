@@ -1,6 +1,6 @@
 <mat-table #files [dataSource]="dataSource" matSort>
   <!-- File Name Column -->
-  <ng-container matColumnDef="file">
+  <ng-container matColumnDef="filename">
     <mat-header-cell *matHeaderCellDef mat-sort-header>file</mat-header-cell>
     <mat-cell *matCellDef="let element" [ngClass] = "[element.status.key]">
       <div class="file-name">
@@ -31,16 +31,17 @@
 
   <!-- File Status Column -->
   <ng-container matColumnDef="status">
-    <!-- TODO: CSS style -->
+    <!-- TODO: write sorting accessor -->
     <mat-header-cell *matHeaderCellDef mat-sort-header>status</mat-header-cell>
     <mat-cell *matCellDef="let element" [ngClass] = "['status', element.status.key]"> {{ element.status.value }} </mat-cell>
   </ng-container>
 
   <!-- File Upload Date Column -->
-  <ng-container matColumnDef="date">
-    <!-- TODO: format date -->
+  <ng-container matColumnDef="date_upload">
     <mat-header-cell *matHeaderCellDef mat-sort-header>date uploaded</mat-header-cell>
-    <mat-cell *matCellDef="let element" [ngClass] = "[element.status.key]">{{element.date_upload}}</mat-cell>
+    <mat-cell *matCellDef="let element" [ngClass] = "[element.status.key]">
+      {{ element.date_upload | date: "yyyy-MM-dd"}}
+    </mat-cell>
   </ng-container>
 
   <!-- Upload New Data Column -->

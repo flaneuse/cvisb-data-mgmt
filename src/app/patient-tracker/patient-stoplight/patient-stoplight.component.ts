@@ -36,7 +36,7 @@ export class PatientStoplightComponent implements OnInit {
   ngOnInit() {
     this.fakeData = this.sampleSvc.getStatusData();
 
-    // console.log(this.fakeData)
+    console.log(this.fakeData)
     this.dataSource = new MatTableDataSource(this.fakeData);
 
     // Filter out just the relevant expts.
@@ -77,7 +77,7 @@ export class PatientStoplightComponent implements OnInit {
     }
 
     // only show the columns selected
-    this.displayedColumns = ['patient_id', 'timepoint'].concat(this.expts).concat('total_complete');
+    this.displayedColumns = ['patient_id', 'timepoints'].concat(this.expts).concat('total_complete');
   }
 
 }
