@@ -48,7 +48,7 @@ export class PatientSummaryComponent implements OnInit {
 
     // TODO: fix hack
     if (this.width < 400) {
-      this.width = 1200;
+      this.width = 650;
     };
 
     // console.log(this.width)

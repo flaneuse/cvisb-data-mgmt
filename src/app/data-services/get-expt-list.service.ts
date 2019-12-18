@@ -99,7 +99,7 @@ export class GetExptListService {
         new ExptParams({ "controlType": "textbox", "key": "replicate", "label": "replicate" })
       ],
       timepoints: [1],
-      dropbox: '/CViSB/Data/Sequencing - HLA/'
+      dropbox: '/CViSB/Data/Sequencing - HLA/Analysis/'
     };
 
     var qpcr: Experiment = {
@@ -118,7 +118,6 @@ export class GetExptListService {
       expt_cat: 'sequencing', cat_order: 3, file_types: ['.bam', '.fasta', '.VCF', '_analysis.fasta', '_analysis.phylip', '_analysis.xml', '_analysis.log'],
       sample_type: 'RNA',
       params: [
-
         new ExptParams({
           "controlType": "dropdown", "key": "amplicon", "label": "Amplicon prep version",
           "options": [{ "key": "lassa1", "value": "Lassa virus targeting v1" }, { "key": "ebola1", "value": "Ebola virus targeting v1" }]

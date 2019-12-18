@@ -16,6 +16,7 @@ import { GetExptListService } from '../../../data-services/get-expt-list.service
 export class ParamFieldComponent {
   @Input() question: ExptParams<any>;
   @Input() form: FormGroup;
+  selected: string;
 
 
   constructor(private exptSvc: GetExptListService) {
@@ -29,8 +30,12 @@ export class ParamFieldComponent {
   changeParam(event: any, opt: any, field: string) {
     if (event.isUserInput == true && field === 'expt_type') {
       console.log(opt)
-
-      this.exptSvc.changeExpt(opt.key);
+      console.log(this)
+      //
+      // this.exptSvc.changeExpt(opt.key);
+      // this.form.controls['expt_type'].setValue("DSJAKDSJAKLDJSKL");
+      // this.form.patchValue({expt_type: "DSJAKDSJAKLDJSKL"});
+      console.log(this.form.controls['expt_type'])
     }
   }
 

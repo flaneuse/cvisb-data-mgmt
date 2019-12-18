@@ -79,7 +79,8 @@ import { OverviewComponent } from './overview/overview.component';
     AppRoutingModule,
     FlexLayoutModule
   ],
-  providers: [GetPatientRosterService,
+  providers: [
+    GetPatientRosterService,
     GetExptListService
   ], // TODO: remove when get real data
   bootstrap: [AppComponent]

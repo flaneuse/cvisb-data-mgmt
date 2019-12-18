@@ -1,3 +1,4 @@
+<!-- <h1>selection: {{value}}</h1> -->
 <div [formGroup]="form">
   <label [attr.for]="question.key">{{question.label}}</label>
 
@@ -8,7 +9,7 @@
     </mat-form-field>
 
     <mat-form-field class="example-full-width" *ngSwitchCase="'dropdown'">
-      <mat-select [id]="question.key" [formControlName]="question.key">
+      <mat-select [id]="question.key" [formControlName]="question.key" [(ngModel)] = "value">
         <mat-option *ngFor="let opt of question.options"
         (onSelectionChange)="changeParam($event, opt, question.key)"
         [value]="opt.key">{{opt.value}}</mat-option>
